@@ -1,0 +1,89 @@
+/* Background and General Styling */
+body {
+    margin: 0;
+    font-family: 'Georgia', serif;
+    background: linear-gradient(to right, #f2f4f7, #e2e6ea); /* Soft gradient */
+    color: #333;
+}
+
+/* Header Styling */
+header h1 {
+    text-align: center;
+    font-size: 3em;
+    color: #004080; /* Deep blue for study guides */
+    margin-top: 20px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+}
+
+/* Cards Styling */
+.resources {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    margin: 40px auto;
+    max-width: 1200px;
+}
+
+.card {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Depth effect */
+    text-align: center;
+    width: 300px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-10px); /* Lift on hover */
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.4); /* Enhanced shadow */
+}
+
+.card h2 {
+    font-size: 1.5em;
+    color: #004080; /* Deep blue for headings */
+}
+
+.card p {
+    font-size: 1em;
+    margin: 15px 0;
+    color: #555; /* Softer text */
+}
+
+.card button {
+    margin-top: 10px;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 25px;
+    background-color: #007BFF; /* Blue button */
+    color: white;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.card button:hover {
+    background-color: #0056b3; /* Dark blue on hover */
+    transform: scale(1.1); /* Slight zoom */
+}
+.back1 {
+    margin: 50px;
+    width: 100px;
+    height: 50px;
+    border-radius: 6px;
+    background: linear-gradient(480deg, purple, black);
+    color: white;
+    border: none;
+    font-size: 1.5em;
+    background-color: #6a5acd;
+
+}
+.back1:hover {
+    border-radius: 4px;
+    background: linear-gradient(480deg, rgb(49, 124, 223),rgb(97, 13, 175));
+    color: white;
+    width: 100px;
+    height: 50px;
+}

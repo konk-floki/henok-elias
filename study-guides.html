@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Guides | Natural Science Resources</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4a6fa5;
+            --primary-dark: #3a5683;
+            --secondary: #ff7e5f;
+            --accent: #6bd3b8;
+            --light: #f8f9fa;
+            --dark: #343a40;
+            --text: #495057;
+            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--light);
+            color: var(--text);
+            line-height: 1.6;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(248, 249, 250, 0.9) 0%, rgba(248, 249, 250, 0.7) 90%),
+                url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 3rem;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 20px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V7.23C0,65.52,268.63,112.77,600,112.77S1200,65.52,1200,7.23V0Z" fill="%23f8f9fa"></path></svg>');
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        header h1 {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            position: relative;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        main {
+            padding: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .resources {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(5px);
+            position: relative;
+            overflow: hidden;
+            transform: translateY(0);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+        }
+
+        .card h2 {
+            color: var(--primary-dark);
+            font-family: 'Poppins', sans-serif;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .card h2::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--secondary);
+            border-radius: 3px;
+        }
+
+        .card p {
+            margin-bottom: 2rem;
+            color: var(--text);
+        }
+
+        .card button {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(74, 111, 165, 0.3);
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .card button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(74, 111, 165, 0.4);
+        }
+
+        .card button:hover::before {
+            left: 100%;
+        }
+
+        .back1 {
+            display: block;
+            margin: 3rem auto;
+            padding: 0.8rem 2rem;
+            background: white;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            border-radius: 50px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+            max-width: 200px;
+            text-align: center;
+        }
+
+        .back1::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            transition: width 0.3s ease;
+            z-index: -1;
+        }
+
+        .back1:hover {
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(74, 111, 165, 0.3);
+        }
+
+        .back1:hover::before {
+            width: 100%;
+        }
+
+        .back1 i {
+            margin-right: 8px;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .resources {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .card {
+                padding: 1.5rem;
+            }
+            
+            .card h2 {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* Subject-specific card colors */
+        .card:nth-child(1) { /* Physics */
+            --primary: #4a6fa5;
+            --primary-dark: #3a5683;
+        }
+        .card:nth-child(2) { /* Chemistry */
+            --primary: #6bd3b8;
+            --primary-dark: #54b39e;
+        }
+        .card:nth-child(3) { /* Biology */
+            --primary: #8a6bbd;
+            --primary-dark: #6e5494;
+        }
+        .card:nth-child(4) { /* Math */
+            --primary: #ff7e5f;
+            --primary-dark: #e56b4d;
+        }
+        .card:nth-child(5) { /* English */
+            --primary: #f9a825;
+            --primary-dark: #d18f21;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Comprehensive Study Guides</h1>
+    </header>
+    <main>
+        <section class="resources">
+            <article class="card">
+                <h2><i class="fas fa-atom"></i> Physics</h2>
+                <p>Master key concepts like motion, energy, and waves with our detailed study guide featuring interactive diagrams and practice problems.</p>
+                <button onclick="window.location.href='physics-guide.pdf'">
+                    <i class="fas fa-download"></i> Download Guide
+                </button>
+            </article>
+            <article class="card">
+                <h2><i class="fas fa-flask"></i> Chemistry</h2>
+                <p>Dive deep into chemical reactions, atomic structure, and the periodic table with our comprehensive chemistry resources.</p>
+                <button onclick="window.location.href='chemistry-guide.pdf'">
+                    <i class="fas fa-download"></i> Download Guide
+                </button>
+            </article>
+            <article class="card">
+                <h2><i class="fas fa-dna"></i> Biology</h2>
+                <p>Explore the wonders of life from cellular biology to ecosystems with our visually-rich study materials and lab simulations.</p>
+                <button onclick="window.location.href='biology-guide.pdf'">
+                    <i class="fas fa-download"></i> Download Guide
+                </button>
+            </article>
+            <article class="card">
+                <h2><i class="fas fa-square-root-alt"></i> Mathematics</h2>
+                <p>Master algebra, geometry, calculus and more with step-by-step explanations and practice exercises with solutions.</p>
+                <button onclick="window.location.href='math-guide.pdf'">
+                    <i class="fas fa-download"></i> Download Guide
+                </button>
+            </article>
+            <article class="card">
+                <h2><i class="fas fa-book-open"></i> English</h2>
+                <p>Enhance your grammar, vocabulary, and writing skills with our comprehensive language arts resources and exercises.</p>
+                <button onclick="window.location.href='english-guide.pdf'">
+                    <i class="fas fa-download"></i> Download Guide
+                </button>
+            </article>
+        </section>
+        <button class="back1" onclick="window.location.href='naturalscienceresources.html'">
+            <i class="fas fa-arrow-left"></i> Back to Resources
+        </button>
+    </main>
+
+    <script>
+        // Add subtle animation to cards when they come into view
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.card');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = `opacity 0.5s ease ${index * 0.1}s, transform 0.5s ease ${index * 0.1}s`;
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>

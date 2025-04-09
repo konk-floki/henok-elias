@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chemistry Practice Exams | Academic Resources</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #3a5a78;
+            --secondary-color: #2c3e50;
+            --accent-color: #3498db;
+            --light-color: #f8f9fa;
+            --dark-color: #212529;
+            --card-bg: #ffffff;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--dark-color);
+            background: url(7.jpg);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="rgba(255,255,255,0.05)" d="M0,0 L100,0 L100,100 L0,100 Z" /><circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="2" /></svg>');
+            opacity: 0.3;
+        }
+
+        header h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            position: relative;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            font-weight: 300;
+        }
+
+        .floating-icons {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .floating-icons i {
+            position: absolute;
+            color: rgba(255,255,255,0.2);
+            animation: float 15s linear infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.2; }
+            90% { opacity: 0.2; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+
+        main {
+            flex: 1;
+            padding: 3rem 0;
+            position: relative;
+        }
+
+        .exam-years {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .exam-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border: none;
+            transform: translateY(20px);
+            opacity: 0;
+            animation: fadeInUp 0.6s ease-out forwards;
+            background: linear-gradient(145deg, #ffffff, #f0f4ff);
+        }
+
+        .exam-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #3498db, #3a5a78);
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .exam-card:hover {
+            transform: translateY(-8px) !important;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .exam-card h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.6rem;
+            margin-bottom: 1.2rem;
+            color: var(--secondary-color);
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            position: relative;
+        }
+
+        .exam-card h2::after {
+            content: "";
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background: var(--accent-color);
+            border-radius: 3px;
+        }
+
+        .exam-card h2 i {
+            color: var(--accent-color);
+            font-size: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .exam-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-bottom: 1.8rem;
+            font-size: 0.95rem;
+            color: #555;
+            justify-content: center;
+        }
+
+        .exam-info span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(52, 152, 219, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+
+        .start-btn {
+            background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.7rem;
+            margin-top: auto;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(58, 90, 120, 0.3);
+            font-size: 1rem;
+        }
+
+        .start-btn::after {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 20px;
+            height: 200%;
+            background: rgba(255,255,255,0.3);
+            transform: rotate(30deg);
+            transition: var(--transition);
+        }
+
+        .start-btn:hover::after {
+            left: 120%;
+        }
+
+        .start-btn:hover {
+            background: linear-gradient(to right, var(--accent-color), var(--primary-color));
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(58, 90, 120, 0.4);
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.7rem;
+            margin: 3rem auto;
+            background: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(44, 62, 80, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .back-btn:hover {
+            background: var(--primary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(44, 62, 80, 0.4);
+        }
+
+        .back-btn::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.2), transparent);
+            transform: translateX(-100%);
+            transition: var(--transition);
+        }
+
+        .back-btn:hover::before {
+            transform: translateX(100%);
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 2.5rem 1.5rem;
+            }
+            
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+            }
+            
+            .exam-years {
+                grid-template-columns: 1fr;
+                padding: 0 1rem;
+                gap: 1.5rem;
+            }
+            
+            .exam-card {
+                padding: 1.8rem;
+            }
+        }
+
+        /* Animation */
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .exam-card:hover h2 i {
+            animation: pulse 1s ease-in-out infinite;
+        }
+
+        /* Stagger animations for exam cards */
+        .exam-card:nth-child(1) { animation-delay: 0.2s; }
+        .exam-card:nth-child(2) { animation-delay: 0.3s; }
+        .exam-card:nth-child(3) { animation-delay: 0.4s; }
+        .exam-card:nth-child(4) { animation-delay: 0.5s; }
+        .exam-card:nth-child(5) { animation-delay: 0.6s; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="floating-icons">
+            <i class="fas fa-atom" style="top: 10%; left: 15%; font-size: 1.5rem;"></i>
+            <i class="fas fa-flask" style="top: 20%; left: 80%; font-size: 1.8rem;"></i>
+            <i class="fas fa-vial" style="top: 70%; left: 10%; font-size: 1.3rem;"></i>
+            <i class="fas fa-microscope" style="top: 60%; left: 85%; font-size: 1.6rem;"></i>
+        </div>
+        <h1>Chemistry Practice Exams</h1>
+        <p class="subtitle">Master your chemistry skills with previous years' exam papers</p>
+    </header>
+    
+    <main>
+        <div class="exam-years">
+            <div class="exam-card">
+                <h2><i class="fas fa-flask"></i> 2017 Exam</h2>
+                <div class="exam-info">
+                    <span><i class="fas fa-file-pdf"></i> PDF Format</span>
+                    <span><i class="fas fa-clock"></i> 120 min</span>
+                    <span><i class="fas fa-question-circle"></i> 85 Questions</span>
+                </div>
+                <button class="start-btn" onclick="window.location.href='Chemistry-exam-2017.pdf'">
+                    <i class="fas fa-download"></i> Download Now
+                </button>
+            </div>
+            
+            <div class="exam-card">
+                <h2><i class="fas fa-flask"></i> 2016 Exam</h2>
+                <div class="exam-info">
+                    <span><i class="fas fa-file-pdf"></i> PDF Format</span>
+                    <span><i class="fas fa-clock"></i> 120 min</span>
+                    <span><i class="fas fa-question-circle"></i> 85 Questions</span>
+                </div>
+                <button class="start-btn" onclick="window.location.href='Chemistry-exam-2016.pdf'">
+                    <i class="fas fa-download"></i> Download Now
+                </button>
+            </div>
+            
+            <div class="exam-card">
+                <h2><i class="fas fa-flask"></i> 2015 Exam</h2>
+                <div class="exam-info">
+                    <span><i class="fas fa-file-pdf"></i> PDF Format</span>
+                    <span><i class="fas fa-clock"></i> 120 min</span>
+                    <span><i class="fas fa-question-circle"></i> 85 Questions</span>
+                </div>
+                <button class="start-btn" onclick="window.location.href='Chemistry-exam-2015.pdf'">
+                    <i class="fas fa-download"></i> Download Now
+                </button>
+            </div>
+            
+            <div class="exam-card">
+                <h2><i class="fas fa-flask"></i> 2014 Exam</h2>
+                <div class="exam-info">
+                    <span><i class="fas fa-file-pdf"></i> PDF Format</span>
+                    <span><i class="fas fa-clock"></i> 120 min</span>
+                    <span><i class="fas fa-question-circle"></i> 85 Questions</span>
+                </div>
+                <button class="start-btn" onclick="window.location.href='Chemistry-exam-2014.pdf'">
+                    <i class="fas fa-download"></i> Download Now
+                </button>
+            </div>
+            
+            <div class="exam-card">
+                <h2><i class="fas fa-flask"></i> 2013 Exam</h2>
+                <div class="exam-info">
+                    <span><i class="fas fa-file-pdf"></i> PDF Format</span>
+                    <span><i class="fas fa-clock"></i> 120 min</span>
+                    <span><i class="fas fa-question-circle"></i> 85 Questions</span>
+                </div>
+                <button class="start-btn" onclick="window.location.href='Chemistry-exam-2013.pdf'">
+                    <i class="fas fa-download"></i> Download Now
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <a href="practice-exams.html" class="back-btn">
+        <i class="fas fa-arrow-left"></i> Back to Resources
+    </a>
+    
+    <script src="nav.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Create more floating icons
+            const floatingIcons = document.querySelector('.floating-icons');
+            const icons = ['fa-atom', 'fa-flask', 'fa-vial', 'fa-microscope', 'fa-poop', 'fa-prescription-bottle'];
+            
+            for (let i = 0; i < 10; i++) {
+                const icon = document.createElement('i');
+                icon.className = `fas ${icons[Math.floor(Math.random() * icons.length)]}`;
+                icon.style.top = `${Math.random() * 100}%`;
+                icon.style.left = `${Math.random() * 100}%`;
+                icon.style.fontSize = `${Math.random() * 1 + 1}rem`;
+                icon.style.animationDuration = `${Math.random() * 10 + 10}s`;
+                icon.style.animationDelay = `${Math.random() * 5}s`;
+                floatingIcons.appendChild(icon);
+            }
+
+            // Animate cards when they come into view
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            const examCards = document.querySelectorAll('.exam-card');
+            examCards.forEach(card => {
+                observer.observe(card);
+            });
+
+            // Add hover effect to buttons
+            const buttons = document.querySelectorAll('button');
+            buttons.forEach(button => {
+                button.addEventListener('mouseenter', () => {
+                    button.style.transform = 'translateY(-3px)';
+                });
+                button.addEventListener('mouseleave', () => {
+                    if (!button.matches(':hover')) {
+                        button.style.transform = '';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

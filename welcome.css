@@ -1,0 +1,58 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f8fb; /* Light blue-gray background */
+    margin: 0;
+    padding: 0;
+}
+
+/* Header and Paragraph at the Top */
+header {
+    text-align: center;
+    padding: 20px 0; /* Adds space inside the header */
+    background-color: #ffffff; /* Optional: Add a background color for header */
+}
+
+h1 {
+    color: #004d99; /* Dark blue */
+    font-size: 2.5em;
+    margin: 0; /* Remove default margins */
+}
+
+p {
+    font-size: 1.5em;
+    color: #333333; /* Dark gray */
+    margin: 10px 0; /* Add small spacing below the header */
+}
+
+/* Button Styles */
+button {
+    font-size: 1.2em;
+    color: #ffffff; /* White text */
+    background-color: #0077cc; /* Bright blue background */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+    margin-top: 20px; /* Add space between paragraph and button */
+}
+
+button:hover {
+    background: linear-gradient(purple,black);  /* Slightly darker blue for hover effect */
+    transition: 0.5s;
+}
+
+button:active {
+    background-color: #004a82; /* Even darker blue for active state */
+    box-shadow: black;
+}
+
+/* Main Section Styling */
+main {
+    padding: 20px;
+    max-width: 600px;
+    margin: 0 auto; /* Center horizontally */
+    text-align: center; /* Keep content centered within the main section */
+}

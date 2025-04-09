@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Practice Exams</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1976d2;
+            --primary-dark: #1565c0;
+            --secondary: #ff8f00;
+            --accent: #26a69a;
+            --light: #f5f5f5;
+            --dark: #212121;
+            --text: #424242;
+            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(245, 245, 245, 0.9) 0%, rgba(245, 245, 245, 0.7) 90%),
+                url('https://images.unsplash.com/photo-1455390582262-044cdead138a?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 20px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V7.23C0,65.52,268.63,112.77,600,112.77S1200,65.52,1200,7.23V0Z" fill="%23f5f5f5"></path></svg>');
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        header h1 {
+            margin: 0;
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            position: relative;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        main {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .resources {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(5px);
+            position: relative;
+            overflow: hidden;
+            transform: translateY(0);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+        }
+
+        .card h2 {
+            color: var(--primary-dark);
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 1.5rem;
+            font-size: 1.6rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .card h2::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background: var(--secondary);
+            border-radius: 3px;
+        }
+
+        .card p {
+            margin-bottom: 2rem;
+            color: var(--text);
+        }
+
+        .card button {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(25, 118, 210, 0.3);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .card button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(25, 118, 210, 0.4);
+        }
+
+        .card button:hover::before {
+            left: 100%;
+        }
+
+        .card button i {
+            margin-right: 8px;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin: 3rem auto;
+            padding: 0.8rem 2rem;
+            background: white;
+            color: var(--primary);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border: 2px solid var(--primary);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .back-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            transition: width 0.3s ease;
+            z-index: -1;
+        }
+
+        .back-button:hover {
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(25, 118, 210, 0.3);
+        }
+
+        .back-button:hover::before {
+            width: 100%;
+        }
+
+        .back-button i {
+            margin-right: 8px;
+        }
+
+        .exam-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .card:hover .exam-icon {
+            transform: scale(1.1);
+            color: var(--secondary);
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes cardEntrance {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card {
+            animation: cardEntrance 0.6s ease-out;
+            animation-fill-mode: backwards;
+        }
+
+        .card:nth-child(1) { animation-delay: 0.1s; }
+        .card:nth-child(2) { animation-delay: 0.2s; }
+        .card:nth-child(3) { animation-delay: 0.3s; }
+        .card:nth-child(4) { animation-delay: 0.4s; }
+        .card:nth-child(5) { animation-delay: 0.5s; }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .resources {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .card {
+                padding: 1.5rem;
+            }
+            
+            .card h2 {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>English Entrance Exams</h1>
+    </header>
+    <main> 
+        <section class="resources">
+            <article class="card">
+                <div class="exam-icon">
+                    <i class="fas fa-file-alt"></i>
+                </div>
+                <h2>2013 English Exam</h2>
+                <p>Complete test with answer key from 2013 entrance examination</p>
+                <button onclick="window.location.href='English-exam-2013.pdf'">
+                    <i class="fas fa-play"></i> Start Exam
+                </button>
+            </article>
+            <article class="card">
+                <div class="exam-icon">
+                    <i class="fas fa-file-alt"></i>
+                </div>
+                <h2>2014 English Exam</h2>
+                <p>Complete test with answer key from 2014 entrance examination</p>
+                <button onclick="window.location.href='English-exam-2014.pdf'">
+                    <i class="fas fa-play"></i> Start Exam
+                </button>
+            </article>
+            <article class="card">
+                <div class="exam-icon">
+                    <i class="fas fa-file-alt"></i>
+                </div>
+                <h2>2015 English Exam</h2>
+                <p>Complete test with answer key from 2015 entrance examination</p>
+                <button onclick="window.location.href='English-exam-2015.pdf'">
+                    <i class="fas fa-play"></i> Start Exam
+                </button>
+            </article>
+            <article class="card">
+                <div class="exam-icon">
+                    <i class="fas fa-file-alt"></i>
+                </div>
+                <h2>2016 English Exam</h2>
+                <p>Complete test with answer key from 2016 entrance examination</p>
+                <button onclick="window.location.href='English-exam-2016.pdf'">
+                    <i class="fas fa-play"></i> Start Exam
+                </button>
+            </article>
+            <article class="card">
+                <div class="exam-icon">
+                    <i class="fas fa-file-alt"></i>
+                </div>
+                <h2>2017 English Exam</h2>
+                <p>Complete test with answer key from 2017 entrance examination</p>
+                <button onclick="window.location.href='English-exam-2017.pdf'">
+                    <i class="fas fa-play"></i> Start Exam
+                </button>
+            </article>
+        </section>
+        
+        <a href="Practice-Exams S.html" class="back-button">
+            <i class="fas fa-arrow-left"></i> Back to Resources
+        </a>
+    </main>
+
+    <script>
+        // Add subtle interaction effects
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.card');
+            
+            cards.forEach(card => {
+                card.addEventListener('mousemove', function(e) {
+                    const x = e.pageX - card.offsetLeft;
+                    const y = e.pageY - card.offsetTop;
+                    
+                    card.style.setProperty('--mouse-x', x + 'px');
+                    card.style.setProperty('--mouse-y', y + 'px');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

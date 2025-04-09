@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Natural Science Resources</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --primary-light: #4cc9f0;
+            --secondary: #3a0ca3;
+            --accent: #f72585;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #4ad66d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            text-align: center;
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+
+        .welcome-container {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            max-width: 700px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            transform: translateY(20px);
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .welcome-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 8px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary), var(--primary-light));
+        }
+
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--secondary);
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        #welcome-message {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .inspiration {
+            font-size: 1.1rem;
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, rgba(67, 97, 238, 0.05) 0%, rgba(76, 201, 240, 0.05) 100%);
+            border-radius: 12px;
+            border-left: 4px solid var(--accent);
+            position: relative;
+        }
+
+        .inspiration::before {
+            content: '"';
+            position: absolute;
+            font-size: 5rem;
+            font-family: serif;
+            color: rgba(247, 37, 133, 0.1);
+            top: -20px;
+            left: 10px;
+            line-height: 1;
+        }
+
+        #redirect-button {
+            background: linear-gradient(to right, var(--primary), var(--primary-light));
+            color: white;
+            border: none;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1.5rem;
+            box-shadow: 0 5px 20px rgba(67, 97, 238, 0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.7rem;
+        }
+
+        #redirect-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(67, 97, 238, 0.4);
+            background: linear-gradient(to right, var(--primary-light), var(--primary));
+        }
+
+        #redirect-button i {
+            transition: transform 0.3s ease;
+        }
+
+        #redirect-button:hover i {
+            transform: translateX(3px);
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: var(--accent);
+            opacity: 0;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes confettiFall {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .welcome-container {
+                padding: 2rem 1.5rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="welcome-container">
+        <h1>Welcome to Natural Science Resources</h1>
+        <p id="welcome-message"></p>
+        <div class="inspiration">
+            <p>If you've come this far just remember you're the best. You can pass the exam - just believe in yourself and don't ever give up!</p>
+        </div>
+        <button id="redirect-button">
+            Continue <i class="fas fa-arrow-right"></i>
+        </button>
+    </div>
+
+    <script>
+        // Display username if available
+        const urlParams = new URLSearchParams(window.location.search);
+        const username = urlParams.get('username');
+        const welcomeMessage = document.getElementById('welcome-message');
+        
+        if(username) {
+            welcomeMessage.textContent = `Hello, ${username}! Ready to continue your science journey?`;
+        } else {
+            welcomeMessage.textContent = 'Hello! Ready to continue your science journey?';
+        }
+
+        // Button functionality
+        document.getElementById('redirect-button').addEventListener('click', function() {
+            // Create confetti effect
+            for(let i = 0; i < 50; i++) {
+                createConfetti();
+            }
+            
+            // Redirect after animation
+            setTimeout(() => {
+                window.location.href = 'naturalscienceresources.html'; // Change to your actual destination
+            }, 800);
+        });
+
+        function createConfetti() {
+            const confetti = document.createElement('div');
+            confetti.classList.add('confetti');
+            
+            // Random properties
+            const colors = ['#4361ee', '#4cc9f0', '#f72585', '#4ad66d', '#3a0ca3'];
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            const randomLeft = Math.random() * 100;
+            const randomAnimationDuration = (Math.random() * 3) + 2;
+            const randomSize = (Math.random() * 10) + 5;
+            const randomDelay = Math.random() * 5;
+            
+            confetti.style.left = `${randomLeft}vw`;
+            confetti.style.backgroundColor = randomColor;
+            confetti.style.width = `${randomSize}px`;
+            confetti.style.height = `${randomSize}px`;
+            confetti.style.animation = `confettiFall ${randomAnimationDuration}s linear ${randomDelay}s forwards`;
+            confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+            
+            document.body.appendChild(confetti);
+            
+            // Remove confetti after animation
+            setTimeout(() => {
+                confetti.remove();
+            }, (randomAnimationDuration + randomDelay) * 1000);
+        }
+    </script>
+</body>
+</html>

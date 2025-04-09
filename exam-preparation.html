@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam Preparation | Study Tips & Tricks</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3f37c9;
+            --accent-color: #4cc9f0;
+            --light-color: #f8f9fa;
+            --dark-color: #212529;
+            --card-bg: #ffffff;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--dark-color);
+            background-color: #f5f7ff;
+            overflow-x: hidden;
+        }
+
+        .hero-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 5rem 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .header-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-header h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            font-weight: 300;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto 3rem;
+            padding: 0 2rem;
+        }
+
+        .strategy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .strategy-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .strategy-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .strategy-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary-color), var(--accent-color));
+        }
+
+        .strategy-card h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--secondary-color);
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .strategy-card h3 i {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+        }
+
+        .strategy-card p {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        .steps-list {
+            padding-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .steps-list li {
+            margin-bottom: 0.8rem;
+            color: #555;
+        }
+
+        .tip-box {
+            background-color: #f0f4ff;
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+        }
+
+        .tip-box h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .timeline-section {
+            margin-top: 4rem;
+        }
+
+        .timeline-title {
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--secondary-color);
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background-color: var(--primary-color);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+
+        .timeline-content {
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+
+        .timeline-content h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            border: 4px solid var(--primary-color);
+            border-radius: 50%;
+            top: 15px;
+            z-index: 1;
+        }
+
+        .timeline-item:nth-child(odd)::after {
+            right: -12px;
+        }
+
+        .timeline-item:nth-child(even)::after {
+            left: -12px;
+        }
+
+        .page-footer {
+            background-color: var(--light-color);
+            padding: 3rem 2rem 1rem;
+            text-align: center;
+            position: relative;
+            margin-top: 4rem;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            transition: var(--transition);
+            margin-bottom: 2rem;
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .back-button:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .hero-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+            }
+            
+            .strategy-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .timeline::before {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+            
+            .timeline-item::after {
+                left: 21px;
+            }
+            
+            .timeline-item:nth-child(odd)::after {
+                right: auto;
+                left: 21px;
+            }
+        }
+
+        /* Animation */
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .strategy-card:hover h3 i {
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <header class="hero-header">
+        <div class="header-content">
+            <h1>Exam Preparation</h1>
+            <p class="subtitle">Proven strategies to help you study smarter and perform better on exams</p>
+        </div>
+    </header>
+    
+    <main class="main-content">
+        <section class="strategy-grid">
+            <article class="strategy-card">
+                <h3><i class="fas fa-calendar-alt"></i> Study Schedule</h3>
+                <p>Create an effective study plan to maximize your preparation time.</p>
+                <ol class="steps-list">
+                    <li>List all topics you need to cover</li>
+                    <li>Prioritize based on exam weight and difficulty</li>
+                    <li>Allocate time slots in your calendar</li>
+                    <li>Include regular review sessions</li>
+                    <li>Build in buffer time for unexpected delays</li>
+                </ol>
+                <div class="tip-box">
+                    <h4>Pro Tip:</h4>
+                    <p>Use the Pomodoro technique (25 min study + 5 min break) to maintain focus during study sessions.</p>
+                </div>
+            </article>
+            
+            <article class="strategy-card">
+                <h3><i class="fas fa-highlighter"></i> Active Learning</h3>
+                <p>Engage with material actively rather than passive reading.</p>
+                <ol class="steps-list">
+                    <li>Create summary notes in your own words</li>
+                    <li>Develop concept maps or diagrams</li>
+                    <li>Teach the material to someone else</li>
+                    <li>Create and answer practice questions</li>
+                    <li>Apply concepts to real-world examples</li>
+                </ol>
+                <div class="tip-box">
+                    <h4>Pro Tip:</h4>
+                    <p>Color-code your notes by topic to create visual associations that aid memory.</p>
+                </div>
+            </article>
+            
+            <article class="strategy-card">
+                <h3><i class="fas fa-clipboard-check"></i> Practice Tests</h3>
+                <p>Simulate exam conditions to improve performance.</p>
+                <ol class="steps-list">
+                    <li>Find past exam papers or create your own</li>
+                    <li>Time yourself as you would during the exam</li>
+                    <li>Review answers thoroughly</li>
+                    <li>Analyze patterns in mistakes</li>
+                    <li>Focus subsequent study on weak areas</li>
+                </ol>
+                <div class="tip-box">
+                    <h4>Pro Tip:</h4>
+                    <p>Take practice tests in the same time slot as your actual exam to condition your brain.</p>
+                </div>
+            </article>
+            
+            <article class="strategy-card">
+                <h3><i class="fas fa-brain"></i> Memory Techniques</h3>
+                <p>Use proven methods to enhance retention and recall.</p>
+                <ol class="steps-list">
+                    <li>Create mnemonics for complex information</li>
+                    <li>Use spaced repetition software</li>
+                    <li>Build memory palaces for dense material</li>
+                    <li>Associate concepts with vivid images</li>
+                    <li>Connect new knowledge to existing knowledge</li>
+                </ol>
+                <div class="tip-box">
+                    <h4>Pro Tip:</h4>
+                    <p>Review material just before sleep to enhance memory consolidation.</p>
+                </div>
+            </article>
+            
+            <article class="strategy-card">
+                <h3><i class="fas fa-heartbeat"></i> Exam Day Prep</h3>
+                <p>Optimize your physical and mental state for peak performance.</p>
+                <ol class="steps-list">
+                    <li>Get adequate sleep for 3 nights before</li>
+                    <li>Eat a balanced meal 2-3 hours before</li>
+                    <li>Arrive early to settle in</li>
+                    <li>Practice deep breathing to calm nerves</li>
+                    <li>Skim notes briefly before exam starts</li>
+                </ol>
+                <div class="tip-box">
+                    <h4>Pro Tip:</h4>
+                    <p>Wear comfortable layers to adapt to any room temperature.</p>
+                </div>
+            </article>
+            
+            <article class="strategy-card">
+                <h3><i class="fas fa-tasks"></i> Answer Strategies</h3>
+                <p>Approach different question types effectively.</p>
+                <ol class="steps-list">
+                    <li>Read all instructions carefully</li>
+                    <li>Scan entire exam first to plan time</li>
+                    <li>Answer easy questions first to build confidence</li>
+                    <li>Show work for partial credit</li>
+                    <li>Review all answers if time permits</li>
+                </ol>
+                <div class="tip-box">
+                    <h4>Pro Tip:</h4>
+                    <p>For essays, create a quick outline before writing to organize thoughts.</p>
+                </div>
+            </article>
+        </section>
+        
+        <section class="timeline-section">
+            <h2 class="timeline-title">4-Week Exam Preparation Timeline</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h4>Week 4 Before Exam</h4>
+                        <ul>
+                            <li>Gather all study materials</li>
+                            <li>Create master topic list</li>
+                            <li>Develop study schedule</li>
+                            <li>Begin content review</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h4>Week 3 Before Exam</h4>
+                        <ul>
+                            <li>Complete first pass of all material</li>
+                            <li>Identify difficult concepts</li>
+                            <li>Start creating summary sheets</li>
+                            <li>Begin practice questions</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h4>Week 2 Before Exam</h4>
+                        <ul>
+                            <li>Focus on weak areas</li>
+                            <li>Take first full practice test</li>
+                            <li>Refine summary materials</li>
+                            <li>Form study groups</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h4>Week Before Exam</h4>
+                        <ul>
+                            <li>Final review of all material</li>
+                            <li>Take 2-3 full practice exams</li>
+                            <li>Clarify last questions</li>
+                            <li>Adjust sleep schedule</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer class="page-footer">
+        <a href="tips for social.html" class="back-button">
+            <i class="fas fa-arrow-left"></i> Back to Study Tips
+        </a>
+    </footer>
+</body>
+</html>

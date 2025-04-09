@@ -1,0 +1,1909 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biology Practice Exam</title>
+    <style>
+        /*CSS*/
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background-color: #f5f7fa;
+            color: #333;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="rgba(255,255,255,0.05)" d="M0,0 L100,0 L100,100 L0,100 Z"></path></svg>');
+            opacity: 0.1;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+        }
+        
+        .timer-container {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background-color: rgba(255,255,255,0.2);
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        main {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+        
+        .resources {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .card {
+            padding: 2rem;
+        }
+        
+        .card h2 {
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+        
+        .card p {
+            margin-bottom: 2rem;
+            color: #555;
+            font-size: 1.1rem;
+        }
+        
+        .questions-container {
+            counter-reset: question-counter;
+        }
+        
+        .question {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .question:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .question::before {
+            counter-increment: question-counter;
+            content: counter(question-counter) ".";
+            font-weight: bold;
+            color: #3498db;
+            margin-right: 0.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .question label {
+            display: block;
+            margin-bottom: 1rem;
+            font-weight: 500;
+            color: #2c3e50;
+            font-size: 1.1rem;
+        }
+        
+        .question input[type="radio"] {
+            margin-right: 0.8rem;
+            transform: scale(1.2);
+        }
+        
+        .question input[type="radio"] + label {
+            display: inline-block;
+            margin-bottom: 0.8rem;
+            cursor: pointer;
+            transition: color 0.2s;
+            font-weight: normal;
+        }
+        
+        .question input[type="radio"]:checked + label {
+            color: #3498db;
+            font-weight: 500;
+        }
+        
+        .submit-btn {
+            display: block;
+            width: 100%;
+            max-width: 300px;
+            margin: 2rem auto;
+            padding: 1rem;
+            background: linear-gradient(135deg, #3498db, #2c3e50);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+        }
+        
+        .submit-btn:active {
+            transform: translateY(1px);
+        }
+        
+        .answer {
+            display: none;
+            margin-top: 3rem;
+            padding: 2rem;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #2ecc71;
+        }
+        
+        .answer h3 {
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+        
+        .answer strong {
+            color: #2c3e50;
+        }
+        
+        .score {
+            text-align: center;
+            margin: 2rem 0;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2c3e50;
+            padding: 1rem;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            display: none;
+        }
+        
+        .progress-container {
+            width: 100%;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            margin: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .progress-bar {
+            height: 10px;
+            background: linear-gradient(90deg, #3498db, #2ecc71);
+            border-radius: 5px;
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+        
+        @media (max-width: 768px) {
+            header {
+                padding: 1.5rem 0;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .timer-container {
+                position: static;
+                margin: 1rem auto;
+                width: fit-content;
+            }
+            
+            .card {
+                padding: 1.5rem;
+            }
+            
+            .question {
+                padding: 1rem;
+            }
+        }
+        
+        /* Animation for correct/incorrect answers */
+        @keyframes correct {
+            0% { background-color: inherit; }
+            50% { background-color: rgba(46, 204, 113, 0.3); }
+            100% { background-color: inherit; }
+        }
+        
+        @keyframes incorrect {
+            0% { background-color: inherit; }
+            50% { background-color: rgba(231, 76, 60, 0.3); }
+            100% { background-color: inherit; }
+        }
+        
+        .correct {
+            animation: correct 1.5s ease;
+        }
+        
+        .incorrect {
+            animation: incorrect 1.5s ease;
+        }
+        
+        /* Warning for low time */
+        .time-warning {
+            animation: pulse 1s infinite;
+            color: #e74c3c !important;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+                .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 500;
+            margin: 2rem auto;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            background: white;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+.back-button:hover {
+    background: var(--light);
+    transform: translateX(-50%) translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+    </style>
+</head>
+<body>
+    <header>
+        <div class="timer-container">
+            <span id="timer">100:00</span>
+        </div>
+        <h1>Biology Practice Exam</h1>
+        <p>Test your knowledge with these 100 biology questions</p>
+    </header>
+    
+    <main>
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+        
+        <section class="resources">
+            <article class="card">
+                <h2>Biology General Questions</h2>
+                <p>Please answer all questions below. You have 100 minutes to complete the exam.</p>
+                
+                <div class="questions-container">
+                    <!-- Questions 1-100 would be inserted here -->
+                    <!-- I've included the first few as an example -->
+                    <div class="question">
+                        <label>Based on the five steps listed below, choose the correct sequence for biological research:<br>
+                            1) Performing an experiment<br>
+                            2) Conducting preliminary observation about a particular problem in biology<br>
+                            3) Statement of biological theory<br>
+                            4) Collecting of experimental data<br>
+                            5) Hypothesis formulation</label>
+                        <div>
+                            <input type="radio" name="question1" id="q1a" value="A">
+                            <label for="q1a">A) 1, 2, 3, 4, 5</label><br>
+                            <input type="radio" name="question1" id="q1b" value="B">
+                            <label for="q1b">B) 5, 4, 3, 2, 1</label><br>
+                            <input type="radio" name="question1" id="q1c" value="C">
+                            <label for="q1c">C) 2, 5, 1, 4, 3</label><br>
+                            <input type="radio" name="question1" id="q1d" value="D">
+                            <label for="q1d">D) 2, 5, 1, 3, 4</label>
+                        </div>
+                    </div>
+
+                    <div class="question">
+                        <label>From which of the following do scientists usually formulate a hypothesis?</label>
+                        <div>
+                            <input type="radio" name="question2" id="q2a" value="A">
+                            <label for="q2a">A) Experiment</label><br>
+                            <input type="radio" name="question2" id="q2b" value="B">
+                            <label for="q2b">B) Theory</label><br>
+                            <input type="radio" name="question2" id="q2c" value="C">
+                            <label for="q2c">C) Prediction</label><br>
+                            <input type="radio" name="question2" id="q2d" value="D">
+                            <label for="q2d">D) Observation</label>
+                        </div>
+                    </div>
+                    <div class="question">
+                        <label> In an experiment testing fertilizer effects on plant growth, what is the dependent variable?</label>
+                        <div>
+                            <input type="radio" name="question3" id="q3a" value="A">
+                            <label for="q3a">A) Growth rate of the plant</label><br>
+                            <input type="radio" name="question3" id="q3b" value="B">
+                            <label for="q3b">B) Fertilizer concentration</label><br>
+                            <input type="radio" name="question3" id="q3c" value="C">
+                            <label for="q3c">C) Plants in control group</label><br>
+                            <input type="radio" name="question3" id="q3d" value="D">
+                            <label for="q3d">D) Plants in experimental group</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> Suppose 25% of an enzyme is inhibited by a non-competitive inhibitor. What happens if substrate concentration is increased by 50%?</label>
+                        <div>
+                            <input type="radio" name="question4" id="q4a" value="A">
+                            <label for="q4a">A) The rate of the reaction remains unchanged</label><br>
+                            <input type="radio" name="question4" id="q4b" value="B">
+                            <label for="q4b">B) More enzyme molecules get inhibited</label><br>
+                            <input type="radio" name="question4" id="q4c" value="C">
+                            <label for="q4c">C) The rate of the reaction decreases by 50%</label><br>
+                            <input type="radio" name="question4" id="q4d" value="D">
+                            <label for="q4d">D) The reaction rate doubles</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> What are the environmental advantages of using enzymes in industry?</label>
+                        <div>
+                            <input type="radio" name="question5" id="q5a" value="A">
+                            <label for="q5a">A) High production with less heat input</label><br>
+                            <input type="radio" name="question5" id="q5b" value="B">
+                            <label for="q5b">B) High production with high heat input</label><br>
+                            <input type="radio" name="question5" id="q5c" value="C">
+                            <label for="q5c">C) High production with more CO2 emission</label><br>
+                            <input type="radio" name="question5" id="q5d" value="D">
+                            <label for="q5d">D) High production with more heat and CO2 emission</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> Where does the Calvin cycle take place?</label>
+                        <div>
+                            <input type="radio" name="question6" id="q6a" value="A">
+                            <label for="q6a">A) Stroma of the chloroplast</label><br>
+                            <input type="radio" name="question6" id="q6b" value="B">
+                            <label for="q6b">B) Chlorophyll molecule</label><br>
+                            <input type="radio" name="question6" id="q6c" value="C">
+                            <label for="q6c">C) Thylakoid membrane</label><br>
+                            <input type="radio" name="question6" id="q6d" value="D">
+                            <label for="q6d">D) Outer membrane of the chloroplast</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> Which of the following is an example of biotechnology?</label>
+                        <div>
+                            <input type="radio" name="question7" id="q7a" value="A">
+                            <label for="q7a">A) Genetic engineering for insulin production</label><br>
+                            <input type="radio" name="question7" id="q7b" value="B">
+                            <label for="q7b">B) Studying fossils of extinct species</label><br>
+                            <input type="radio" name="question7" id="q7c" value="C">
+                            <label for="q7c">C) Space exploration with telescopes</label><br>
+                            <input type="radio" name="question7" id="q7d" value="D">
+                            <label for="q7d">D) Manufacturing of automobiles with robotics</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> What is the primary goal of conservation of natural resources?</label>
+                        <div>
+                            <input type="radio" name="question8" id="q8a" value="A">
+                            <label for="q8a">A) Exploit resources for economic gain</label><br>
+                            <input type="radio" name="question8" id="q8b" value="B">
+                            <label for="q8b">B) Preserve resources for future generations</label><br>
+                            <input type="radio" name="question8" id="q8c" value="C">
+                            <label for="q8c">C) Eliminate the use of resources entirely</label><br>
+                            <input type="radio" name="question8" id="q8d" value="D">
+                            <label for="q8d">D) Maximize extraction for industrial development</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> Which of the following is an example of non-renewable natural resources?</label>
+                        <div>
+                            <input type="radio" name="question9" id="q9a" value="A">
+                            <label for="q9a">A) Solar energy</label><br>
+                            <input type="radio" name="question9" id="q9b" value="B">
+                            <label for="q9b">B) Wind energy</label><br>
+                            <input type="radio" name="question9" id="q9c" value="C">
+                            <label for="q9c">C) Fossil fuels</label><br>
+                            <input type="radio" name="question9" id="q9d" value="D">
+                            <label for="q9d">D) Timber</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> Which of the following factors can contribute to food insecurity?</label>
+                        <div>
+                            <input type="radio" name="question10" id="q10a" value="A">
+                            <label for="q10a">A) Climate change and extreme weather events</label><br>
+                            <input type="radio" name="question10" id="q10b" value="B">
+                            <label for="q10b">B) High agricultural productivity and technology advancements</label><br>
+                            <input type="radio" name="question10" id="q10c" value="C">
+                            <label for="q10c">C) Increased access to nutritious foods in local communities</label><br>
+                            <input type="radio" name="question10" id="q10d" value="D">
+                            <label for="q10d">D) Stable political and economic conditions</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> Which of the following is an example of a biopesticide?</label>
+                        <div>
+                            <input type="radio" name="question11" id="q11a" value="A">
+                            <label for="q11a">A) Synthetic pyrethroids for mosquito control</label><br>
+                            <input type="radio" name="question11" id="q11b" value="B">
+                            <label for="q11b">B) Chlorinated hydrocarbons for termite control</label><br>
+                            <input type="radio" name="question11" id="q11c" value="C">
+                            <label for="q11c">C) Bacillus thuringiensis (Bt) for caterpillar control</label><br>
+                            <input type="radio" name="question11" id="q11d" value="D">
+                            <label for="q11d">D) Organophosphates for weed control</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> What is the importance of gene therapy in the field of medicine?</label>
+                        <div>
+                            <input type="radio" name="question12" id="q12a" value="A">
+                            <label for="q12a">A) Potential cure for untreatable genetic diseases</label><br>
+                            <input type="radio" name="question12" id="q12b" value="B">
+                            <label for="q12b">B) Improves effectiveness of drug therapies</label><br>
+                            <input type="radio" name="question12" id="q12c" value="C">
+                            <label for="q12c">C) Eliminates need for surgical interventions</label><br>
+                            <input type="radio" name="question12" id="q12d" value="D">
+                            <label for="q12d">D) Enhances immune response to diseases</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> Among the following human diseases, identify the one that is transmitted through a vector?</label>
+                        <div>
+                            <input type="radio" name="question13" id="q13a" value="A">
+                            <label for="q13a">A) Leprosy</label><br>
+                            <input type="radio" name="question13" id="q13b" value="B">
+                            <label for="q13b">B) Mumps</label><br>
+                            <input type="radio" name="question13" id="q13c" value="C">
+                            <label for="q13c">C) Gonorrhea</label><br>
+                            <input type="radio" name="question13" id="q13d" value="D">
+                            <label for="q13d">D) Trypanosomiasis</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> What is the criterion in the modern classification of enzymes?</label>
+                        <div>
+                            <input type="radio" name="question14" id="q14a" value="A">
+                            <label for="q14a">A) The type of reaction the enzyme catalyzes</label><br>
+                            <input type="radio" name="question14" id="q14b" value="B">
+                            <label for="q14b">B) The place of their synthesis</label><br>
+                            <input type="radio" name="question14" id="q14c" value="C">
+                            <label for="q14c">C) The type of the product the enzyme yields</label><br>
+                            <input type="radio" name="question14" id="q14d" value="D">
+                            <label for="q14d">D) The type of substrate that the enzyme acts on</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> If an enzyme depends on a cofactor for its activity, then the enzyme becomes active and functional when it is found in the form of:</label>
+                        <div>
+                            <input type="radio" name="question15" id="q15a" value="A">
+                            <label for="q15a">A) Apoenzyme</label><br>
+                            <input type="radio" name="question15" id="q15b" value="B">
+                            <label for="q15b">B) Coenzyme</label><br>
+                            <input type="radio" name="question15" id="q15c" value="C">
+                            <label for="q15c">C) Holoenzyme</label><br>
+                            <input type="radio" name="question15" id="q15d" value="D">
+                            <label for="q15d">D) Cofactor</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> How do enzymes accelerate biochemical reactions?</label>
+                        <div>
+                            <input type="radio" name="question16" id="q16a" value="A">
+                            <label for="q16a">A) By increasing the amount of activation energy of the reaction</label><br>
+                            <input type="radio" name="question16" id="q16b" value="B">
+                            <label for="q16b">B) Being specific to various substrates</label><br>
+                            <input type="radio" name="question16" id="q16c" value="C">
+                            <label for="q16c">C) By reducing the amount of activation energy of the reaction</label><br>
+                            <input type="radio" name="question16" id="q16d" value="D">
+                            <label for="q16d">D) Since they are proteinase molecules</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> Suppose three potato cylinders are kept for some time in different sucrose solutions and distilled water, which will be more flaccid?</label>
+                        <div>
+                            <input type="radio" name="question17" id="q17a" value="A">
+                            <label for="q17a">A) The cylinder in 10% solution</label><br>
+                            <input type="radio" name="question17" id="q17b" value="B">
+                            <label for="q17b">B) The cylinder in 15% solution</label><br>
+                            <input type="radio" name="question17" id="q17c" value="C">
+                            <label for="q17c">C) The cylinder in 80% solution</label><br>
+                            <input type="radio" name="question17" id="q17d" value="D">
+                            <label for="q17d">D) The cylinder in distilled water</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> Which of the following cell types can be rich in lysosomes?</label>
+                        <div>
+                            <input type="radio" name="question18" id="q18a" value="A">
+                            <label for="q18a">A) Nerve cell</label><br>
+                            <input type="radio" name="question18" id="q18b" value="B">
+                            <label for="q18b">B) Muscle cell</label><br>
+                            <input type="radio" name="question18" id="q18c" value="C">
+                            <label for="q18c">C) Phagocytic cells</label><br>
+                            <input type="radio" name="question18" id="q18d" value="D">
+                            <label for="q18d">D) Red blood cells</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> What happens when red blood cells are kept in a hypertonic solution?</label>
+                        <div>
+                            <input type="radio" name="question19" id="q19a" value="A">
+                            <label for="q19a">A) The same net gain and loss of water</label><br>
+                            <input type="radio" name="question19" id="q19b" value="B">
+                            <label for="q19b">B) More water goes out of the cell than getting in</label><br>
+                            <input type="radio" name="question19" id="q19c" value="C">
+                            <label for="q19c">C) More water gets into the cell than leaving it</label><br>
+                            <input type="radio" name="question19" id="q19d" value="D">
+                            <label for="q19d">D) The cells prevent water from getting in or leaving out</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> Which of the following is an important function of the Golgi apparatus?</label>
+                        <div>
+                            <input type="radio" name="question20" id="q20a" value="A">
+                            <label for="q20a">A) Protein synthesis</label><br>
+                            <input type="radio" name="question20" id="q20b" value="B">
+                            <label for="q20b">B) Removing of debris from the cell</label><br>
+                            <input type="radio" name="question20" id="q20c" value="C">
+                            <label for="q20c">C) Packaging of protein for export out of the cell</label><br>
+                            <input type="radio" name="question20" id="q20d" value="D">
+                            <label for="q20d">D) Storage of waste materials not needed by the cell</label>
+                        </div>
+                    </div>
+                    <div class="question">
+                        <label> Which of the following stages of aerobic respiration does not take place in the mitochondria?</label>
+                        <div>
+                            <input type="radio" name="question21" id="q21a" value="A">
+                            <label for="q21a">A) Link reaction</label><br>
+                            <input type="radio" name="question21" id="q21b" value="B">
+                            <label for="q21b">B) Glycolysis</label><br>
+                            <input type="radio" name="question21" id="q21c" value="C">
+                            <label for="q21c">C) Krebs cycle</label><br>
+                            <input type="radio" name="question21" id="q21d" value="D">
+                            <label for="q21d">D) Electron transport chain</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> Based on the report writing format listed above, choose the alternative that shows the correct sequence in reporting the results of research in scientific journals?</label>
+                        <div>
+                            <input type="radio" name="question22" id="q22a" value="A">
+                            <label for="q22a">A) 1, 5, 3, 6, 8, 7, 2, 4</label><br>
+                            <input type="radio" name="question22" id="q22b" value="B">
+                            <label for="q22b">B) 7, 8, 6, 3, 5, 4, 1, 2</label><br>
+                            <input type="radio" name="question22" id="q22c" value="C">
+                            <label for="q22c">C) 7, 3, 4, 2, 5, 8, 6, 1</label><br>
+                            <input type="radio" name="question22" id="q22d" value="D">
+                            <label for="q22d">D) 1, 6, 8, 5, 2, 4, 3, 7</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> The petiole of a leaf is:</label>
+                        <div>
+                            <input type="radio" name="question23" id="q23a" value="A">
+                            <label for="q23a">A) The outer protective covering of the leaf</label><br>
+                            <input type="radio" name="question23" id="q23b" value="B">
+                            <label for="q23b">B) The part of the leaf that attaches it to the stem</label><br>
+                            <input type="radio" name="question23" id="q23c" value="C">
+                            <label for="q23c">C) The tip of the leaf</label><br>
+                            <input type="radio" name="question23" id="q23d" value="D">
+                            <label for="q23d">D) The central vein of the leaf</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> Which of the following is the function of a bacterial endospore?</label>
+                        <div>
+                            <input type="radio" name="question24" id="q24a" value="A">
+                            <label for="q24a">A) Reproduction</label><br>
+                            <input type="radio" name="question24" id="q24b" value="B">
+                            <label for="q24b">B) Survival</label><br>
+                            <input type="radio" name="question24" id="q24c" value="C">
+                            <label for="q24c">C) Storage</label><br>
+                            <input type="radio" name="question24" id="q24d" value="D">
+                            <label for="q24d">D) Protein synthesis</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> What organisms are capable of photosynthesis?</label>
+                        <div>
+                            <input type="radio" name="question25" id="q25a" value="A">
+                            <label for="q25a">A) Plants only</label><br>
+                            <input type="radio" name="question25" id="q25b" value="B">
+                            <label for="q25b">B) Plants and algae only</label><br>
+                            <input type="radio" name="question25" id="q25c" value="C">
+                            <label for="q25c">C) Plants and some bacteria only</label><br>
+                            <input type="radio" name="question25" id="q25d" value="D">
+                            <label for="q25d">D) Plants, algae and some bacteria</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> Which of the following is an example of a C4 plant?</label>
+                        <div>
+                            <input type="radio" name="question26" id="q26a" value="A">
+                            <label for="q26a">A) Cactus</label><br>
+                            <input type="radio" name="question26" id="q26b" value="B">
+                            <label for="q26b">B) Maize</label><br>
+                            <input type="radio" name="question26" id="q26c" value="C">
+                            <label for="q26c">C) Rice</label><br>
+                            <input type="radio" name="question26" id="q26d" value="D">
+                            <label for="q26d">D) Wheat</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> G3P (glyceraldehyde 3 phosphate) is used by plants for all of the following EXCEPT the formation of:</label>
+                        <div>
+                            <input type="radio" name="question27" id="q27a" value="A">
+                            <label for="q27a">A) Fatty acid</label><br>
+                            <input type="radio" name="question27" id="q27b" value="B">
+                            <label for="q27b">B) Oxygen</label><br>
+                            <input type="radio" name="question27" id="q27c" value="C">
+                            <label for="q27c">C) Sucrose</label><br>
+                            <input type="radio" name="question27" id="q27d" value="D">
+                            <label for="q27d">D) Starch</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> Which leaf tissue layer is responsible for the majority of photosynthesis in plants?</label>
+                        <div>
+                            <input type="radio" name="question28" id="q28a" value="A">
+                            <label for="q28a">A) Palisade mesophyll</label><br>
+                            <input type="radio" name="question28" id="q28b" value="B">
+                            <label for="q28b">B) Sponge mesophyll</label><br>
+                            <input type="radio" name="question28" id="q28c" value="C">
+                            <label for="q28c">C) Guard cell</label><br>
+                            <input type="radio" name="question28" id="q28d" value="D">
+                            <label for="q28d">D) Epidermis</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> At which stage of aerobic respiration is most ATP generated?</label>
+                        <div>
+                            <input type="radio" name="question29" id="q29a" value="A">
+                            <label for="q29a">A) Krebs cycle</label><br>
+                            <input type="radio" name="question29" id="q29b" value="B">
+                            <label for="q29b">B) Glycolysis</label><br>
+                            <input type="radio" name="question29" id="q29c" value="C">
+                            <label for="q29c">C) Electron transport chain</label><br>
+                            <input type="radio" name="question29" id="q29d" value="D">
+                            <label for="q29d">D) Link reaction</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> How many molecules of glycerol and fatty acids are needed respectively to form 200 molecules of triglyceride?</label>
+                        <div>
+                            <input type="radio" name="question30" id="q30a" value="A">
+                            <label for="q30a">A) 200 and 400</label><br>
+                            <input type="radio" name="question30" id="q30b" value="B">
+                            <label for="q30b">B) 200 and 600</label><br>
+                            <input type="radio" name="question30" id="q30c" value="C">
+                            <label for="q30c">C) 100 and 200</label><br>
+                            <input type="radio" name="question30" id="q30d" value="D">
+                            <label for="q30d">D) 400 and 600</label>
+                        </div>
+                    </div>
+                    <div class="question">
+                        <label> Which chemical element is the most abundant in living cells?</label>
+                        <div>
+                            <input type="radio" name="question31" id="q31a" value="A">
+                            <label for="q31a">A) Carbon, Hydrogen, Oxygen, Nitrogen</label><br>
+                            <input type="radio" name="question31" id="q31b" value="B">
+                            <label for="q31b">B) Oxygen, Nitrogen, Phosphorous, Sulphur</label><br>
+                            <input type="radio" name="question31" id="q31c" value="C">
+                            <label for="q31c">C) Nitrogen, Hydrogen, Phosphorous, Calcium</label><br>
+                            <input type="radio" name="question31" id="q31d" value="D">
+                            <label for="q31d">D) Hydrogen, Nitrogen, Phosphorous, Sulphur</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> The presence of cholesterol in the cell membrane contributes to:</label>
+                        <div>
+                            <input type="radio" name="question32" id="q32a" value="A">
+                            <label for="q32a">A) Increased fluidity of the membrane</label><br>
+                            <input type="radio" name="question32" id="q32b" value="B">
+                            <label for="q32b">B) Decreased fluidity of the membrane</label><br>
+                            <input type="radio" name="question32" id="q32c" value="C">
+                            <label for="q32c">C) Enhanced transport of large molecules</label><br>
+                            <input type="radio" name="question32" id="q32d" value="D">
+                            <label for="q32d">D) Formation of lipid rafts</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> The cell membrane plays a crucial role in maintaining:</label>
+                        <div>
+                            <input type="radio" name="question33" id="q33a" value="A">
+                            <label for="q33a">A) Intracellular pH balance</label><br>
+                            <input type="radio" name="question33" id="q33b" value="B">
+                            <label for="q33b">B) Genetic material replication</label><br>
+                            <input type="radio" name="question33" id="q33c" value="C">
+                            <label for="q33c">C) Protein synthesis</label><br>
+                            <input type="radio" name="question33" id="q33d" value="D">
+                            <label for="q33d">D) Mitochondrial function</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> Which model is widely accepted and supported by scientific evidence as the current understanding of the cell membrane structure?</label>
+                        <div>
+                            <input type="radio" name="question34" id="q34a" value="A">
+                            <label for="q34a">A) Davson-Danielli model</label><br>
+                            <input type="radio" name="question34" id="q34b" value="B">
+                            <label for="q34b">B) Fluid mosaic model</label><br>
+                            <input type="radio" name="question34" id="q34c" value="C">
+                            <label for="q34c">C) Lipid bilayer model</label><br>
+                            <input type="radio" name="question34" id="q34d" value="D">
+                            <label for="q34d">D) Protein monolayer model</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> How can the community contribute to HIV control efforts?</label>
+                        <div>
+                            <input type="radio" name="question35" id="q35a" value="A">
+                            <label for="q35a">A) Promoting HIV awareness and education</label><br>
+                            <input type="radio" name="question35" id="q35b" value="B">
+                            <label for="q35b">B) Encouraging regular HIV testing</label><br>
+                            <input type="radio" name="question35" id="q35c" value="C">
+                            <label for="q35c">C) Supporting access to healthcare and treatment</label><br>
+                            <input type="radio" name="question35" id="q35d" value="D">
+                            <label for="q35d">D) All of the above</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> What is the reason that Louis Pasteur used a swan-necked flask instead of a straight-necked one in his experiment designed to disprove the theory of spontaneous generation?</label>
+                        <div>
+                            <input type="radio" name="question36" id="q36a" value="A">
+                            <label for="q36a">A) To allow free passage of air to the broth inside the flask</label><br>
+                            <input type="radio" name="question36" id="q36b" value="B">
+                            <label for="q36b">B) To prevent the escape of any microorganisms from the flask</label><br>
+                            <input type="radio" name="question36" id="q36c" value="C">
+                            <label for="q36c">C) To keep the broth in the flask hot to kill microorganisms</label><br>
+                            <input type="radio" name="question36" id="q36d" value="D">
+                            <label for="q36d">D) To trap particles from the air that might enter the flask before reaching the broth</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> In which of the following are all the tools mainly used in the laboratory rather than in field situations?</label>
+                        <div>
+                            <input type="radio" name="question37" id="q37a" value="A">
+                            <label for="q37a">A) Data logger, flow meter, theodolite, GPS receivers</label><br>
+                            <input type="radio" name="question37" id="q37b" value="B">
+                            <label for="q37b">B) Flow meters, centrifuges, theodolites, microscopes</label><br>
+                            <input type="radio" name="question37" id="q37c" value="C">
+                            <label for="q37c">C) Centrifuges, plant presses, flow meters, microscopes</label><br>
+                            <input type="radio" name="question37" id="q37d" value="D">
+                            <label for="q37d">D) Centrifuges, petri dishes, electron microscope, measuring cylinders</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> The biological instrument used to culture bacteria in the laboratory is:</label>
+                        <div>
+                            <input type="radio" name="question38" id="q38a" value="A">
+                            <label for="q38a">A) Test tube</label><br>
+                            <input type="radio" name="question38" id="q38b" value="B">
+                            <label for="q38b">B) Petri dish</label><br>
+                            <input type="radio" name="question38" id="q38c" value="C">
+                            <label for="q38c">C) Beaker</label><br>
+                            <input type="radio" name="question38" id="q38d" value="D">
+                            <label for="q38d">D) Microscope</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> Which of the following is an inorganic compound?</label>
+                        <div>
+                            <input type="radio" name="question39" id="q39a" value="A">
+                            <label for="q39a">A) Deoxyribose</label><br>
+                            <input type="radio" name="question39" id="q39b" value="B">
+                            <label for="q39b">B) Calcium carbonate</label><br>
+                            <input type="radio" name="question39" id="q39c" value="C">
+                            <label for="q39c">C) ATP</label><br>
+                            <input type="radio" name="question39" id="q39d" value="D">
+                            <label for="q39d">D) Glycine</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> Which of the following properties of water makes sweat an effective body cooler?</label>
+                        <div>
+                            <input type="radio" name="question40" id="q40a" value="A">
+                            <label for="q40a">A) Its high specific heat</label><br>
+                            <input type="radio" name="question40" id="q40b" value="B">
+                            <label for="q40b">B) Its low density when frozen</label><br>
+                            <input type="radio" name="question40" id="q40c" value="C">
+                            <label for="q40c">C) Its high surface tension</label><br>
+                            <input type="radio" name="question40" id="q40d" value="D">
+                            <label for="q40d">D) Its high heat of vaporization</label>
+                        </div>
+                    </div>
+                    <div class="question">
+                        <label> Why is photosynthesis impossible at a depth of 2000m?</label>
+                        <div>
+                            <input type="radio" name="question41" id="q41a" value="A">
+                            <label for="q41a">A) It is too cold</label><br>
+                            <input type="radio" name="question41" id="q41b" value="B">
+                            <label for="q41b">B) Only blue light penetrates this far</label><br>
+                            <input type="radio" name="question41" id="q41c" value="C">
+                            <label for="q41c">C) It is too hot</label><br>
+                            <input type="radio" name="question41" id="q41d" value="D">
+                            <label for="q41d">D) No light penetrates this far</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> In which one of their structural parts do different molecules of amino acids differ from one another?</label>
+                        <div>
+                            <input type="radio" name="question42" id="q42a" value="A">
+                            <label for="q42a">A) In their amino group</label><br>
+                            <input type="radio" name="question42" id="q42b" value="B">
+                            <label for="q42b">B) In their alpha-carbon group</label><br>
+                            <input type="radio" name="question42" id="q42c" value="C">
+                            <label for="q42c">C) In their R group</label><br>
+                            <input type="radio" name="question42" id="q42d" value="D">
+                            <label for="q42d">D) In their carboxyl group</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> If one mixes a sample of fruit juice and some drops of Benedict's solution and obtains a brick-red precipitate upon warming the mixture, what does the juice contain?</label>
+                        <div>
+                            <input type="radio" name="question43" id="q43a" value="A">
+                            <label for="q43a">A) Starch</label><br>
+                            <input type="radio" name="question43" id="q43b" value="B">
+                            <label for="q43b">B) Reducing sugar</label><br>
+                            <input type="radio" name="question43" id="q43c" value="C">
+                            <label for="q43c">C) Sucrose</label><br>
+                            <input type="radio" name="question43" id="q43d" value="D">
+                            <label for="q43d">D) Protein</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> How many water molecules are released when 400 glucoses in a condensation reaction form starch?</label>
+                        <div>
+                            <input type="radio" name="question44" id="q44a" value="A">
+                            <label for="q44a">A) 100</label><br>
+                            <input type="radio" name="question44" id="q44b" value="B">
+                            <label for="q44b">B) 600</label><br>
+                            <input type="radio" name="question44" id="q44c" value="C">
+                            <label for="q44c">C) 399</label><br>
+                            <input type="radio" name="question44" id="q44d" value="D">
+                            <label for="q44d">D) 397</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> Which of the following polysaccharides is stored in the liver and muscles of animals?</label>
+                        <div>
+                            <input type="radio" name="question45" id="q45a" value="A">
+                            <label for="q45a">A) Starch</label><br>
+                            <input type="radio" name="question45" id="q45b" value="B">
+                            <label for="q45b">B) Glycogen</label><br>
+                            <input type="radio" name="question45" id="q45c" value="C">
+                            <label for="q45c">C) Cellulose</label><br>
+                            <input type="radio" name="question45" id="q45d" value="D">
+                            <label for="q45d">D) Chitin</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> Which of the following is NOT a function of triglycerides in the body?</label>
+                        <div>
+                            <input type="radio" name="question46" id="q46a" value="A">
+                            <label for="q46a">A) Energy storage</label><br>
+                            <input type="radio" name="question46" id="q46b" value="B">
+                            <label for="q46b">B) Thermal insulation</label><br>
+                            <input type="radio" name="question46" id="q46c" value="C">
+                            <label for="q46c">C) Enzyme production</label><br>
+                            <input type="radio" name="question46" id="q46d" value="D">
+                            <label for="q46d">D) Buoyancy</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> Which one of the following is true?</label>
+                        <div>
+                            <input type="radio" name="question47" id="q47a" value="A">
+                            <label for="q47a">A) Cellular respiration occurs in mitochondria and in chloroplasts</label><br>
+                            <input type="radio" name="question47" id="q47b" value="B">
+                            <label for="q47b">B) Photosynthesis occurs in chloroplasts and cellular respiration occurs in mitochondria</label><br>
+                            <input type="radio" name="question47" id="q47c" value="C">
+                            <label for="q47c">C) Photosynthesis occurs in mitochondria and in chloroplasts</label><br>
+                            <input type="radio" name="question47" id="q47d" value="D">
+                            <label for="q47d">D) Photosynthesis occurs in mitochondria and cellular respiration occurs in chloroplasts</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> Which of the following processes of photosynthesis does not require the presence of light to take place?</label>
+                        <div>
+                            <input type="radio" name="question48" id="q48a" value="A">
+                            <label for="q48a">A) Photolysis of water</label><br>
+                            <input type="radio" name="question48" id="q48b" value="B">
+                            <label for="q48b">B) ATP formation</label><br>
+                            <input type="radio" name="question48" id="q48c" value="C">
+                            <label for="q48c">C) Reduction of NADP</label><br>
+                            <input type="radio" name="question48" id="q48d" value="D">
+                            <label for="q48d">D) Carbon fixation</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> Which of the following is false about non-cyclic photophosphorylation?</label>
+                        <div>
+                            <input type="radio" name="question49" id="q49a" value="A">
+                            <label for="q49a">A) It requires photolysis of water</label><br>
+                            <input type="radio" name="question49" id="q49b" value="B">
+                            <label for="q49b">B) It produces NADPH</label><br>
+                            <input type="radio" name="question49" id="q49c" value="C">
+                            <label for="q49c">C) It generates ATP</label><br>
+                            <input type="radio" name="question49" id="q49d" value="D">
+                            <label for="q49d">D) PSI (chlorophyll) is the final electron acceptor</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> The reaction that occurs in the bundle sheath cell of C4 plants from the following is:</label>
+                        <div>
+                            <input type="radio" name="question50" id="q50a" value="A">
+                            <label for="q50a">A) Calvin cycle</label><br>
+                            <input type="radio" name="question50" id="q50b" value="B">
+                            <label for="q50b">B) Conversion of PEP to oxaloacetate</label><br>
+                            <input type="radio" name="question50" id="q50c" value="C">
+                            <label for="q50c">C) Carbon fixation</label><br>
+                            <input type="radio" name="question50" id="q50d" value="D">
+                            <label for="q50d">D) Conversion of oxaloacetate to malate</label>
+                        </div>
+                    </div>
+                    <div class="question">
+                        <label> Icosahedral symmetry of viruses is known for their:</label>
+                        <div>
+                            <input type="radio" name="question51" id="q51a" value="A">
+                            <label for="q51a">A) Helical capsids</label><br>
+                            <input type="radio" name="question51" id="q51b" value="B">
+                            <label for="q51b">B) Complex replication mechanisms</label><br>
+                            <input type="radio" name="question51" id="q51c" value="C">
+                            <label for="q51c">C) Spherical shape with 20 triangular faces and 12 vertices</label><br>
+                            <input type="radio" name="question51" id="q51d" value="D">
+                            <label for="q51d">D) Ability to infect only bacteria</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> When glucose is used to make ATP all of the carbons in glucose are converted to CO₂. Which metabolic pathway produces most of this CO₂?</label>
+                        <div>
+                            <input type="radio" name="question52" id="q52a" value="A">
+                            <label for="q52a">A) Electron transport chain</label><br>
+                            <input type="radio" name="question52" id="q52b" value="B">
+                            <label for="q52b">B) Krebs cycle</label><br>
+                            <input type="radio" name="question52" id="q52c" value="C">
+                            <label for="q52c">C) Glycolysis</label><br>
+                            <input type="radio" name="question52" id="q52d" value="D">
+                            <label for="q52d">D) Link reaction</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> What will happen to the rate of enzyme catalyzed reaction, if the substrate concentration increases without altering enzyme concentration?</label>
+                        <div>
+                            <input type="radio" name="question53" id="q53a" value="A">
+                            <label for="q53a">A) Increase initially and become constant</label><br>
+                            <input type="radio" name="question53" id="q53b" value="B">
+                            <label for="q53b">B) Increase quickly all the time</label><br>
+                            <input type="radio" name="question53" id="q53c" value="C">
+                            <label for="q53c">C) Decrease quickly all the time</label><br>
+                            <input type="radio" name="question53" id="q53d" value="D">
+                            <label for="q53d">D) Increase initially and become zero finally</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> Which of the following statements best describes genetic engineering?</label>
+                        <div>
+                            <input type="radio" name="question54" id="q54a" value="A">
+                            <label for="q54a">A) The study of genetic inheritance patterns in human populations</label><br>
+                            <input type="radio" name="question54" id="q54b" value="B">
+                            <label for="q54b">B) The manipulation of an organism's genetic material to introduce desirable traits</label><br>
+                            <input type="radio" name="question54" id="q54c" value="C">
+                            <label for="q54c">C) The analysis of genetic variation within a species</label><br>
+                            <input type="radio" name="question54" id="q54d" value="D">
+                            <label for="q54d">D) The study of DNA replication and protein synthesis</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> How can biotechnology contribute to securing the food supply of society?</label>
+                        <div>
+                            <input type="radio" name="question55" id="q55a" value="A">
+                            <label for="q55a">A) By eliminating the need for agricultural practices</label><br>
+                            <input type="radio" name="question55" id="q55b" value="B">
+                            <label for="q55b">B) By reducing the global population to match the available food resources</label><br>
+                            <input type="radio" name="question55" id="q55c" value="C">
+                            <label for="q55c">C) By enhancing crop productivity and improving resistance to pests and diseases</label><br>
+                            <input type="radio" name="question55" id="q55d" value="D">
+                            <label for="q55d">D) By promoting traditional farming methods over modern techniques</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> Which of the following is an example of a traditional use of biotechnology?</label>
+                        <div>
+                            <input type="radio" name="question56" id="q56a" value="A">
+                            <label for="q56a">A) Developing genetically modified organisms (GMOs)</label><br>
+                            <input type="radio" name="question56" id="q56b" value="B">
+                            <label for="q56b">B) Using fermentation to produce bread and alcoholic beverages</label><br>
+                            <input type="radio" name="question56" id="q56c" value="C">
+                            <label for="q56c">C) Engineering plants for herbicide resistance</label><br>
+                            <input type="radio" name="question56" id="q56d" value="D">
+                            <label for="q56d">D) Modifying the genetic material of organisms using modern laboratory techniques</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> Which microorganism plays a key role in the fermentation process of tella, tej, wine and beer production?</label>
+                        <div>
+                            <input type="radio" name="question57" id="q57a" value="A">
+                            <label for="q57a">A) Lactic acid bacteria</label><br>
+                            <input type="radio" name="question57" id="q57b" value="B">
+                            <label for="q57b">B) Acetic acid bacteria</label><br>
+                            <input type="radio" name="question57" id="q57c" value="C">
+                            <label for="q57c">C) Saccharomyces</label><br>
+                            <input type="radio" name="question57" id="q57d" value="D">
+                            <label for="q57d">D) Penicillium mold</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> What is bioremediation?</label>
+                        <div>
+                            <input type="radio" name="question58" id="q58a" value="A">
+                            <label for="q58a">A) The process of using chemical compounds to clean up pollutants</label><br>
+                            <input type="radio" name="question58" id="q58b" value="B">
+                            <label for="q58b">B) The application of microorganisms to degrade or remove pollutants from the environment</label><br>
+                            <input type="radio" name="question58" id="q58c" value="C">
+                            <label for="q58c">C) The process of using physical barriers to isolate contaminated areas</label><br>
+                            <input type="radio" name="question58" id="q58d" value="D">
+                            <label for="q58d">D) The extraction of pollutants from the environment using specialized machinery</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> What is the primary mode of transmission for respiratory infections caused by microorganisms?</label>
+                        <div>
+                            <input type="radio" name="question59" id="q59a" value="A">
+                            <label for="q59a">A) Direct contact with contaminated surfaces</label><br>
+                            <input type="radio" name="question59" id="q59b" value="B">
+                            <label for="q59b">B) Ingestion of contaminated food and water</label><br>
+                            <input type="radio" name="question59" id="q59c" value="C">
+                            <label for="q59c">C) Inhalation of respiratory droplets from infected individuals</label><br>
+                            <input type="radio" name="question59" id="q59d" value="D">
+                            <label for="q59d">D) Transmission through insect vectors</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> Which of the following statements is true regarding fungi?</label>
+                        <div>
+                            <input type="radio" name="question60" id="q60a" value="A">
+                            <label for="q60a">A) Fungi are photosynthetic organisms</label><br>
+                            <input type="radio" name="question60" id="q60b" value="B">
+                            <label for="q60b">B) Fungi are multicellular and have true roots, stems, and leaves</label><br>
+                            <input type="radio" name="question60" id="q60c" value="C">
+                            <label for="q60c">C) Fungi reproduce through spores</label><br>
+                            <input type="radio" name="question60" id="q60d" value="D">
+                            <label for="q60d">D) Fungi are not chemoheterotrophic</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> Which of the following diseases is not caused by a protozoan parasite?</label>
+                        <div>
+                            <input type="radio" name="question61" id="q61a" value="A">
+                            <label for="q61a">A) Malaria</label><br>
+                            <input type="radio" name="question61" id="q61b" value="B">
+                            <label for="q61b">B) Measles</label><br>
+                            <input type="radio" name="question61" id="q61c" value="C">
+                            <label for="q61c">C) Leishmaniasis</label><br>
+                            <input type="radio" name="question61" id="q61d" value="D">
+                            <label for="q61d">D) Toxoplasmosis</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> Which of the following is a characteristic feature of protozoa?</label>
+                        <div>
+                            <input type="radio" name="question62" id="q62a" value="A">
+                            <label for="q62a">A) Multicellularity</label><br>
+                            <input type="radio" name="question62" id="q62b" value="B">
+                            <label for="q62b">B) Presence of a Cell wall</label><br>
+                            <input type="radio" name="question62" id="q62c" value="C">
+                            <label for="q62c">C) Presence of chloroplasts for photosynthesis in all protozoa</label><br>
+                            <input type="radio" name="question62" id="q62d" value="D">
+                            <label for="q62d">D) Presence of a nucleus</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> Which of the following viruses is primarily transmitted through animal bites?</label>
+                        <div>
+                            <input type="radio" name="question63" id="q63a" value="A">
+                            <label for="q63a">A) Rabies virus</label><br>
+                            <input type="radio" name="question63" id="q63b" value="B">
+                            <label for="q63b">B) Mumps virus</label><br>
+                            <input type="radio" name="question63" id="q63c" value="C">
+                            <label for="q63c">C) Human papilloma virus</label><br>
+                            <input type="radio" name="question63" id="q63d" value="D">
+                            <label for="q63d">D) Hepatitis C virus</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> Among the following, one is not the correct idea of Robert Koch's postulate:</label>
+                        <div>
+                            <input type="radio" name="question64" id="q64a" value="A">
+                            <label for="q64a">A) The microorganisms must always be present when the disease is present</label><br>
+                            <input type="radio" name="question64" id="q64b" value="B">
+                            <label for="q64b">B) The microorganism can be isolated from an infected individual & then grow in culture</label><br>
+                            <input type="radio" name="question64" id="q64c" value="C">
+                            <label for="q64c">C) Introducing such cultured microorganisms into a healthy host should result in disease developing</label><br>
+                            <input type="radio" name="question64" id="q64d" value="D">
+                            <label for="q64d">D) It is not possible to re-isolate the microorganism to obtain a pure culture</label>
+                        </div>
+                    </div>
+                    Question number 65-67 is to be answer based on the following diagram
+                    <img src="bio-image.png">
+                    <div class="question">
+                        <label> What organelle is illustrated above? (Refer to diagram in original exam)</label>
+                        <div>
+                            <input type="radio" name="question65" id="q65a" value="A">
+                            <label for="q65a">A) Mitochondrion</label><br>
+                            <input type="radio" name="question65" id="q65b" value="B">
+                            <label for="q65b">B) Chloroplast</label><br>
+                            <input type="radio" name="question65" id="q65c" value="C">
+                            <label for="q65c">C) Golgi apparatus</label><br>
+                            <input type="radio" name="question65" id="q65d" value="D">
+                            <label for="q65d">D) Endoplasmic reticulum</label>
+                        </div>
+                    </div>
+                    <div class="question">
+                        <label> What is the term for the structure labeled "a"? (Refer to diagram in original exam)</label>
+                        <div>
+                            <input type="radio" name="question66" id="q66a" value="A">
+                            <label for="q66a">A) Thylakoid</label><br>
+                            <input type="radio" name="question66" id="q66b" value="B">
+                            <label for="q66b">B) Stroma</label><br>
+                            <input type="radio" name="question66" id="q66c" value="C">
+                            <label for="q66c">C) Matrix</label><br>
+                            <input type="radio" name="question66" id="q66d" value="D">
+                            <label for="q66d">D) Crista</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> Which statement is NOT true of the set of reactions labeled "d"? (Refer to diagram in original exam)</label>
+                        <div>
+                            <input type="radio" name="question67" id="q67a" value="A">
+                            <label for="q67a">A) They are referred to as the Calvin Cycle</label><br>
+                            <input type="radio" name="question67" id="q67b" value="B">
+                            <label for="q67b">B) Carbon dioxide is "fixed" during the process</label><br>
+                            <input type="radio" name="question67" id="q67c" value="C">
+                            <label for="q67c">C) Most carbon is converted into RuBP</label><br>
+                            <input type="radio" name="question67" id="q67d" value="D">
+                            <label for="q67d">D) The process takes place in the grana</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> An enzyme that hydrolyzes protein will not act upon starch. This fact indicates that enzymes are:</label>
+                        <div>
+                            <input type="radio" name="question68" id="q68a" value="A">
+                            <label for="q68a">A) Catalytic</label><br>
+                            <input type="radio" name="question68" id="q68b" value="B">
+                            <label for="q68b">B) Synthetic</label><br>
+                            <input type="radio" name="question68" id="q68c" value="C">
+                            <label for="q68c">C) Hydrolytic</label><br>
+                            <input type="radio" name="question68" id="q68d" value="D">
+                            <label for="q68d">D) Specific</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> Which factor has a more negative effect on the functions of enzymes than the others?</label>
+                        <div>
+                            <input type="radio" name="question69" id="q69a" value="A">
+                            <label for="q69a">A) Neutral pH</label><br>
+                            <input type="radio" name="question69" id="q69b" value="B">
+                            <label for="q69b">B) Very high temperature</label><br>
+                            <input type="radio" name="question69" id="q69c" value="C">
+                            <label for="q69c">C) Optimal amount of salt concentration</label><br>
+                            <input type="radio" name="question69" id="q69d" value="D">
+                            <label for="q69d">D) Optimal amount of substrate concentration</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> When an enzyme is denatured by heat or extreme pH, which one of the following does it lose?</label>
+                        <div>
+                            <input type="radio" name="question70" id="q70a" value="A">
+                            <label for="q70a">A) The peptide bonds</label><br>
+                            <input type="radio" name="question70" id="q70b" value="B">
+                            <label for="q70b">B) Primary structure</label><br>
+                            <input type="radio" name="question70" id="q70c" value="C">
+                            <label for="q70c">C) Secondary structure</label><br>
+                            <input type="radio" name="question70" id="q70d" value="D">
+                            <label for="q70d">D) Tertiary structure</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> If the ratio of competitive inhibitor molecules to substrate molecules is 2:8, the enzyme controlling the reaction will be:</label>
+                        <div>
+                            <input type="radio" name="question71" id="q71a" value="A">
+                            <label for="q71a">A) 10% activated</label><br>
+                            <input type="radio" name="question71" id="q71b" value="B">
+                            <label for="q71b">B) 20% activated</label><br>
+                            <input type="radio" name="question71" id="q71c" value="C">
+                            <label for="q71c">C) 80% activated</label><br>
+                            <input type="radio" name="question71" id="q71d" value="D">
+                            <label for="q71d">D) two-eight inhibited</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> Which of the following mechanisms do cells use to regulate enzyme catalyzed reactions in metabolic pathways?</label>
+                        <div>
+                            <input type="radio" name="question72" id="q72a" value="A">
+                            <label for="q72a">A) Enzyme denaturation</label><br>
+                            <input type="radio" name="question72" id="q72b" value="B">
+                            <label for="q72b">B) End-product inhibition</label><br>
+                            <input type="radio" name="question72" id="q72c" value="C">
+                            <label for="q72c">C) Irreversible inhibition</label><br>
+                            <input type="radio" name="question72" id="q72d" value="D">
+                            <label for="q72d">D) Competitive inhibition</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> Among the following scientists who contributed to the cell theory, identify the one who stated that a cell can arise only from another cell like it.</label>
+                        <div>
+                            <input type="radio" name="question73" id="q73a" value="A">
+                            <label for="q73a">A) Robert Hooke</label><br>
+                            <input type="radio" name="question73" id="q73b" value="B">
+                            <label for="q73b">B) Theodor Schwann</label><br>
+                            <input type="radio" name="question73" id="q73c" value="C">
+                            <label for="q73c">C) Matthias Schleiden</label><br>
+                            <input type="radio" name="question73" id="q73d" value="D">
+                            <label for="q73d">D) Rudolf Virchow</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> Which of the following is true about prokaryotic and eukaryotic cells?</label>
+                        <div>
+                            <input type="radio" name="question74" id="q74a" value="A">
+                            <label for="q74a">A) Both prokaryotes and eukaryotes have membrane-bonded nucleus</label><br>
+                            <input type="radio" name="question74" id="q74b" value="B">
+                            <label for="q74b">B) Eukaryotes have linear DNA, but prokaryotes have a continuous loop DNA</label><br>
+                            <input type="radio" name="question74" id="q74c" value="C">
+                            <label for="q74c">C) Prokaryotes have mitochondria, but eukaryotes have no mitochondria</label><br>
+                            <input type="radio" name="question74" id="q74d" value="D">
+                            <label for="q74d">D) Prokaryotic cells are larger and contain more organelles than eukaryotes</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label>which Of the following four cells whose surface area to volume ratio is given, which cell can more efficiently transport its needs of materials across the cell surface?</label>
+                        <div>
+                            <input type="radio" name="question75" id="q75a" value="A">
+                            <label for="q75a">A) 24:8 ratio</label><br>
+                            <input type="radio" name="question75" id="q75b" value="B">
+                            <label for="q75b">B) 54:27 ratio</label><br>
+                            <input type="radio" name="question75" id="q75c" value="C">
+                            <label for="q75c">C) 96:64 ratio</label><br>
+                            <input type="radio" name="question75" id="q75d" value="D">
+                            <label for="q75d">D) 150:125 ratio</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> Why are cells that secrete hormones and enzymes rich in rough endoplasmic reticulum? Because they produce more:</label>
+                        <div>
+                            <input type="radio" name="question76" id="q76a" value="A">
+                            <label for="q76a">A) Proteins</label><br>
+                            <input type="radio" name="question76" id="q76b" value="B">
+                            <label for="q76b">B) ATP</label><br>
+                            <input type="radio" name="question76" id="q76c" value="C">
+                            <label for="q76c">C) Carbohydrates</label><br>
+                            <input type="radio" name="question76" id="q76d" value="D">
+                            <label for="q76d">D) Lipids</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> Which of the following is not found in the energy currency of the cell (ATP)?</label>
+                        <div>
+                            <input type="radio" name="question77" id="q77a" value="A">
+                            <label for="q77a">A) Nitrogenous base</label><br>
+                            <input type="radio" name="question77" id="q77b" value="B">
+                            <label for="q77b">B) Hexose sugar</label><br>
+                            <input type="radio" name="question77" id="q77c" value="C">
+                            <label for="q77c">C) Phosphate</label><br>
+                            <input type="radio" name="question77" id="q77d" value="D">
+                            <label for="q77d">D) Pentose sugar</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> Which of the following is an example of a beneficial application of microorganisms?</label>
+                        <div>
+                            <input type="radio" name="question78" id="q78a" value="A">
+                            <label for="q78a">A) Infectious diseases</label><br>
+                            <input type="radio" name="question78" id="q78b" value="B">
+                            <label for="q78b">B) Antibiotic production</label><br>
+                            <input type="radio" name="question78" id="q78c" value="C">
+                            <label for="q78c">C) Food spoilage</label><br>
+                            <input type="radio" name="question78" id="q78d" value="D">
+                            <label for="q78d">D) Air pollution</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> How are vector-borne diseases primarily transmitted to humans?</label>
+                        <div>
+                            <input type="radio" name="question79" id="q79a" value="A">
+                            <label for="q79a">A) Through contaminated water</label><br>
+                            <input type="radio" name="question79" id="q79b" value="B">
+                            <label for="q79b">B) Through direct contact with an infected person</label><br>
+                            <input type="radio" name="question79" id="q79c" value="C">
+                            <label for="q79c">C) Through the respiratory system</label><br>
+                            <input type="radio" name="question79" id="q79d" value="D">
+                            <label for="q79d">D) Through the bite of an infected arthropod</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> Which molecule is the final electron acceptor in the electron transport chain?</label>
+                        <div>
+                            <input type="radio" name="question80" id="q80a" value="A">
+                            <label for="q80a">A) Oxygen</label><br>
+                            <input type="radio" name="question80" id="q80b" value="B">
+                            <label for="q80b">B) Carbon dioxide</label><br>
+                            <input type="radio" name="question80" id="q80c" value="C">
+                            <label for="q80c">C) NADH</label><br>
+                            <input type="radio" name="question80" id="q80d" value="D">
+                            <label for="q80d">D) FADH₂</label>
+                        </div>
+                    </div>
+                    <div class="question">
+                        <label> Which of the following is a prokaryotic microorganism?</label>
+                        <div>
+                            <input type="radio" name="question81" id="q81a" value="A">
+                            <label for="q81a">A) Trichomonads</label><br>
+                            <input type="radio" name="question81" id="q81b" value="B">
+                            <label for="q81b">B) Protozoan</label><br>
+                            <input type="radio" name="question81" id="q81c" value="C">
+                            <label for="q81c">C) Slime mold</label><br>
+                            <input type="radio" name="question81" id="q81d" value="D">
+                            <label for="q81d">D) Cyanobacteria</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> Which of the following terms refers to a prokaryotic cell that is comma-shaped?</label>
+                        <div>
+                            <input type="radio" name="question82" id="q82a" value="A">
+                            <label for="q82a">A) Sarcina</label><br>
+                            <input type="radio" name="question82" id="q82b" value="B">
+                            <label for="q82b">B) Bacilli</label><br>
+                            <input type="radio" name="question82" id="q82c" value="C">
+                            <label for="q82c">C) Cocci</label><br>
+                            <input type="radio" name="question82" id="q82d" value="D">
+                            <label for="q82d">D) Vibrio</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> Compared with Gram-positive bacteria, Gram-negative bacteria:</label>
+                        <div>
+                            <input type="radio" name="question83" id="q83a" value="A">
+                            <label for="q83a">A) Are less resistant to antibiotics</label><br>
+                            <input type="radio" name="question83" id="q83b" value="B">
+                            <label for="q83b">B) Have no outer membrane</label><br>
+                            <input type="radio" name="question83" id="q83c" value="C">
+                            <label for="q83c">C) Lose the crystal violet stain in Gram's method of staining</label><br>
+                            <input type="radio" name="question83" id="q83d" value="D">
+                            <label for="q83d">D) Have thicker peptidoglycan layer in their cell wall</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> Among the following infectious human diseases, identify the one that is not caused by bacteria:</label>
+                        <div>
+                            <input type="radio" name="question84" id="q84a" value="A">
+                            <label for="q84a">A) Pertussis</label><br>
+                            <input type="radio" name="question84" id="q84b" value="B">
+                            <label for="q84b">B) Typhoid fever</label><br>
+                            <input type="radio" name="question84" id="q84c" value="C">
+                            <label for="q84c">C) Syphilis</label><br>
+                            <input type="radio" name="question84" id="q84d" value="D">
+                            <label for="q84d">D) Aspergillosis</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> All of the following are characteristic of viruses except:</label>
+                        <div>
+                            <input type="radio" name="question85" id="q85a" value="A">
+                            <label for="q85a">A) Viruses have an inner core of nucleic acid</label><br>
+                            <input type="radio" name="question85" id="q85b" value="B">
+                            <label for="q85b">B) Viruses do not have a cellular organization</label><br>
+                            <input type="radio" name="question85" id="q85c" value="C">
+                            <label for="q85c">C) Viruses are affected by antibacterial antibiotics</label><br>
+                            <input type="radio" name="question85" id="q85d" value="D">
+                            <label for="q85d">D) Viruses are obligate intercellular parasites</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> Given these characteristics of a transport process:</label>
+                        <ul>
+                            <li>Moves with the concentration gradient</li>
+                            <li>Does not require energy</li>
+                            <li>Requires carrier molecules</li>
+                        </ul>
+                        <label>The transport process involved is:</label>
+                        <div>
+                            <input type="radio" name="question86" id="q86a" value="A">
+                            <label for="q86a">A) Facilitated diffusion</label><br>
+                            <input type="radio" name="question86" id="q86b" value="B">
+                            <label for="q86b">B) Active transport</label><br>
+                            <input type="radio" name="question86" id="q86c" value="C">
+                            <label for="q86c">C) Phagocytosis</label><br>
+                            <input type="radio" name="question86" id="q86d" value="D">
+                            <label for="q86d">D) Pinocytosis</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> What is the primary function of the Calvin cycle?</label>
+                        <div>
+                            <input type="radio" name="question87" id="q87a" value="A">
+                            <label for="q87a">A) Use ATP to release carbon dioxide</label><br>
+                            <input type="radio" name="question87" id="q87b" value="B">
+                            <label for="q87b">B) Use NADPH to release carbon dioxide</label><br>
+                            <input type="radio" name="question87" id="q87c" value="C">
+                            <label for="q87c">C) Split water and release oxygen</label><br>
+                            <input type="radio" name="question87" id="q87d" value="D">
+                            <label for="q87d">D) Synthesize simple sugars from carbon dioxide</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> How is photosynthesis similar in C4 and CAM plants?</label>
+                        <div>
+                            <input type="radio" name="question88" id="q88a" value="A">
+                            <label for="q88a">A) Both types of plants make sugar without the Calvin cycle</label><br>
+                            <input type="radio" name="question88" id="q88b" value="B">
+                            <label for="q88b">B) In both cases, thylakoids are not involved in photosynthesis</label><br>
+                            <input type="radio" name="question88" id="q88c" value="C">
+                            <label for="q88c">C) Both types of plants make most of their sugar in the dark</label><br>
+                            <input type="radio" name="question88" id="q88d" value="D">
+                            <label for="q88d">D) In both cases, PEP carboxylase is used to fix carbon initially</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> Which of the following is a key difference between DNA and RNA?</label>
+                        <div>
+                            <input type="radio" name="question89" id="q89a" value="A">
+                            <label for="q89a">A) DNA contains deoxyribose sugar, while RNA contains ribose sugar</label><br>
+                            <input type="radio" name="question89" id="q89b" value="B">
+                            <label for="q89b">B) DNA is single-stranded, while RNA is double-stranded</label><br>
+                            <input type="radio" name="question89" id="q89c" value="C">
+                            <label for="q89c">C) DNA contains uracil as one of its bases, while RNA contains thymine</label><br>
+                            <input type="radio" name="question89" id="q89d" value="D">
+                            <label for="q89d">D) DNA is found in the nucleus, while RNA is found in the cytoplasm</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> End-product inhibition or negative feedback control of a metabolic pathway occurs when:</label>
+                        <div>
+                            <input type="radio" name="question90" id="q90a" value="A">
+                            <label for="q90a">A) The last product of the pathway inhibits the enzyme controlling the first reaction</label><br>
+                            <input type="radio" name="question90" id="q90b" value="B">
+                            <label for="q90b">B) The last product of the pathway inhibits the enzyme controlling the last reaction</label><br>
+                            <input type="radio" name="question90" id="q90c" value="C">
+                            <label for="q90c">C) The first product of the pathway inhibits the enzyme controlling the last reaction</label><br>
+                            <input type="radio" name="question90" id="q90d" value="D">
+                            <label for="q90d">D) The last product of the pathway inhibits the enzyme controlling the second reaction</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> Given these characteristics of a transport process into a cell:</label>
+                        <ul>
+                            <li>ATP is required</li>
+                            <li>Does not exhibit saturation</li>
+                            <li>Solid particles are transported</li>
+                        </ul>
+                        <label>The transport process involved is:</label>
+                        <div>
+                            <input type="radio" name="question91" id="q91a" value="A">
+                            <label for="q91a">A) Active transport</label><br>
+                            <input type="radio" name="question91" id="q91b" value="B">
+                            <label for="q91b">B) Facilitated diffusion</label><br>
+                            <input type="radio" name="question91" id="q91c" value="C">
+                            <label for="q91c">C) Phagocytosis</label><br>
+                            <input type="radio" name="question91" id="q91d" value="D">
+                            <label for="q91d">D) Pinocytosis</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> What is the role of microorganisms in sewage treatment plants?</label>
+                        <div>
+                            <input type="radio" name="question92" id="q92a" value="A">
+                            <label for="q92a">A) To produce ethanol</label><br>
+                            <input type="radio" name="question92" id="q92b" value="B">
+                            <label for="q92b">B) To filter out heavy metals</label><br>
+                            <input type="radio" name="question92" id="q92c" value="C">
+                            <label for="q92c">C) To break down organic matter</label><br>
+                            <input type="radio" name="question92" id="q92d" value="D">
+                            <label for="q92d">D) To produce antibiotics</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> What is the primary role of vaccines in disease prevention?</label>
+                        <div>
+                            <input type="radio" name="question93" id="q93a" value="A">
+                            <label for="q93a">A) Treating symptoms of the disease</label><br>
+                            <input type="radio" name="question93" id="q93b" value="B">
+                            <label for="q93b">B) Boosting the immune system</label><br>
+                            <input type="radio" name="question93" id="q93c" value="C">
+                            <label for="q93c">C) Destroying bacteria and viruses</label><br>
+                            <input type="radio" name="question93" id="q93d" value="D">
+                            <label for="q93d">D) Stimulating allergic reactions</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> What is the primary purpose of fermentation?</label>
+                        <div>
+                            <input type="radio" name="question94" id="q94a" value="A">
+                            <label for="q94a">A) To generate ATP</label><br>
+                            <input type="radio" name="question94" id="q94b" value="B">
+                            <label for="q94b">B) To regenerate NAD+</label><br>
+                            <input type="radio" name="question94" id="q94c" value="C">
+                            <label for="q94c">C) To produce oxygen</label><br>
+                            <input type="radio" name="question94" id="q94d" value="D">
+                            <label for="q94d">D) To convert pyruvate to acetyl-CoA</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> In the cell membrane, phospholipids are arranged in a bilayer with their heads facing the external and internal environments and their tails facing each other:</label>
+                        <div>
+                            <input type="radio" name="question95" id="q95a" value="A">
+                            <label for="q95a">A) Hydrophilic; hydrophobic</label><br>
+                            <input type="radio" name="question95" id="q95b" value="B">
+                            <label for="q95b">B) Charged; uncharged</label><br>
+                            <input type="radio" name="question95" id="q95c" value="C">
+                            <label for="q95c">C) Hydrophobic; hydrophilic</label><br>
+                            <input type="radio" name="question95" id="q95d" value="D">
+                            <label for="q95d">D) Uncharged; charged</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> Suppose you labeled two permeable membranes to water as A and B, and you add hypertonic solution in A and hypotonic solution in B. What will be the expected result?</label>
+                        <div>
+                            <input type="radio" name="question96" id="q96a" value="A">
+                            <label for="q96a">A) No change in both membranes</label><br>
+                            <input type="radio" name="question96" id="q96b" value="B">
+                            <label for="q96b">B) Rise of the water level in B</label><br>
+                            <input type="radio" name="question96" id="q96c" value="C">
+                            <label for="q96c">C) Rise of the water level in A</label><br>
+                            <input type="radio" name="question96" id="q96d" value="D">
+                            <label for="q96d">D) Rise of the water level in both membranes</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> Which biomolecule is the primary source of energy for living organisms?</label>
+                        <div>
+                            <input type="radio" name="question97" id="q97a" value="A">
+                            <label for="q97a">A) Lipids</label><br>
+                            <input type="radio" name="question97" id="q97b" value="B">
+                            <label for="q97b">B) Proteins</label><br>
+                            <input type="radio" name="question97" id="q97c" value="C">
+                            <label for="q97c">C) Nucleic acids</label><br>
+                            <input type="radio" name="question97" id="q97d" value="D">
+                            <label for="q97d">D) Carbohydrates</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> Which level of protein structure refers to the linear sequence of amino acids?</label>
+                        <div>
+                            <input type="radio" name="question98" id="q98a" value="A">
+                            <label for="q98a">A) Secondary structure</label><br>
+                            <input type="radio" name="question98" id="q98b" value="B">
+                            <label for="q98b">B) Primary structure</label><br>
+                            <input type="radio" name="question98" id="q98c" value="C">
+                            <label for="q98c">C) Quaternary structure</label><br>
+                            <input type="radio" name="question98" id="q98d" value="D">
+                            <label for="q98d">D) Tertiary structure</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> Which mode of nutrition describes bacteria that obtain energy from sunlight and carbon from inorganic sources?</label>
+                        <div>
+                            <input type="radio" name="question99" id="q99a" value="A">
+                            <label for="q99a">A) Photoautotroph</label><br>
+                            <input type="radio" name="question99" id="q99b" value="B">
+                            <label for="q99b">B) Photoheterotroph</label><br>
+                            <input type="radio" name="question99" id="q99c" value="C">
+                            <label for="q99c">C) Chemoautotroph</label><br>
+                            <input type="radio" name="question99" id="q99d" value="D">
+                            <label for="q99d">D) Chemoheterotroph</label>
+                        </div>
+                    </div>
+                    
+                    <div class="question">
+                        <label> Which cycle is associated with the formation of viral particles called prophage?</label>
+                        <div>
+                            <input type="radio" name="question100" id="q100a" value="A">
+                            <label for="q100a">A) Lytic cycle</label><br>
+                            <input type="radio" name="question100" id="q100b" value="B">
+                            <label for="q100b">B) Lysogenic cycle</label><br>
+                            <input type="radio" name="question100" id="q100c" value="C">
+                            <label for="q100c">C) Replicative cycle</label><br>
+                            <input type="radio" name="question100" id="q100d" value="D">
+                            <label for="q100d">D) Retroviral cycle</label>
+                        </div>
+                    </div>
+                    <!-- More questions would follow the same pattern -->
+                    <!-- For brevity, I'm showing just the first few -->
+                    
+                    <button class="submit-btn" id="submitBtn">Submit Answers</button>
+                    
+                    <div class="answer" id="answer">
+                        <h3>Correct Answers</h3>
+                        <div id="answerKey">
+                            <!-- Answers will be inserted here by JavaScript -->
+                        </div>
+                    </div>
+                    
+                    <div class="score" id="score"></div>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <script>
+       // Correct answers for all 100 questions
+const correctAnswers = {
+    1: "C", 2: "D", 3: "A", 4: "A", 5: "A",
+    6: "A", 7: "A", 8: "B", 9: "C", 10: "A",
+    11: "C", 12: "A", 13: "D", 14: "A", 15: "C",
+    16: "C", 17: "C", 18: "C", 19: "B", 20: "C",
+    21: "B", 22: "D", 23: "B", 24: "B", 25: "D",
+    26: "B", 27: "B", 28: "A", 29: "C", 30: "A",
+    31: "A", 32: "B", 33: "A", 34: "B", 35: "D",
+    36: "D", 37: "D", 38: "B", 39: "B", 40: "D",
+    41: "D", 42: "C", 43: "B", 44: "C", 45: "B",
+    46: "C", 47: "B", 48: "D", 49: "D", 50: "A",
+    51: "C", 52: "B", 53: "A", 54: "B", 55: "C",
+    56: "B", 57: "C", 58: "B", 59: "C", 60: "C",
+    61: "B", 62: "D", 63: "A", 64: "D", 65: "B",
+    66: "A", 67: "D", 68: "D", 69: "B", 70: "D",
+    71: "B", 72: "B", 73: "D", 74: "B", 75: "A",
+    76: "A", 77: "B", 78: "B", 79: "D", 80: "A",
+    81: "D", 82: "D", 83: "C", 84: "D", 85: "C",
+    86: "A", 87: "D", 88: "D", 89: "A", 90: "A",
+    91: "C", 92: "C", 93: "B", 94: "B", 95: "A",
+    96: "C", 97: "D", 98: "B", 99: "A", 100: "B"
+    // Add answers for questions 21-100 following the same pattern
+    // ...
+};
+
+// Timer functionality - 100 minutes
+let timeLeft = 100 * 60; // 100 minutes in seconds
+const timerElement = document.getElementById('timer');
+let timerInterval;
+
+function startTimer() {
+    timerInterval = setInterval(updateTimer, 1000);
+}
+
+function updateTimer() {
+    timeLeft--;
+    if (timeLeft <= 0) {
+        clearInterval(timerInterval);
+        submitExam();
+        timerElement.textContent = "00:00";
+        return;
+    }
+    
+    const minutes = Math.floor(timeLeft / 60);
+    const seconds = timeLeft % 60;
+    timerElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    
+    // Change color when time is running low
+    if (timeLeft <= 600) { // 10 minutes left
+        timerElement.classList.add('time-warning');
+    }
+}
+
+// Progress bar functionality
+const progressBar = document.getElementById('progressBar');
+const questions = document.querySelectorAll('.question');
+
+function updateProgressBar() {
+    const answered = document.querySelectorAll('input[type="radio"]:checked').length;
+    const total = questions.length;
+    const percentage = (answered / total) * 100;
+    progressBar.style.width = `${percentage}%`;
+    
+    // Change color based on progress
+    if (percentage < 30) {
+        progressBar.style.background = '#e74c3c';
+    } else if (percentage < 70) {
+        progressBar.style.background = '#f39c12';
+    } else {
+        progressBar.style.background = '#2ecc71';
+    }
+}
+
+// Submit exam function
+function submitExam() {
+    clearInterval(timerInterval);
+    
+    let score = 0;
+    const totalQuestions = questions.length;
+    
+    // Check each question
+    questions.forEach((question, index) => {
+        const questionNum = index + 1;
+        const selectedOption = document.querySelector(`input[name="question${questionNum}"]:checked`);
+        
+        if (selectedOption) {
+            if (selectedOption.value === correctAnswers[questionNum]) {
+                score++;
+                question.classList.add('correct');
+            } else {
+                question.classList.add('incorrect');
+            }
+        }
+    });
+    
+    // Display score
+    const percentage = Math.round((score / totalQuestions) * 100);
+    const scoreElement = document.getElementById('score');
+    scoreElement.textContent = `Your Score: ${score}/${totalQuestions} (${percentage}%)`;
+    scoreElement.style.display = 'block';
+    
+    // Display answers
+    const answerKey = document.getElementById('answerKey');
+    answerKey.innerHTML = '';
+    
+    for (let i = 1; i <= totalQuestions; i++) {
+        const div = document.createElement('div');
+        div.innerHTML = `<strong>${i}.</strong> ${correctAnswers[i]}<br>`;
+        answerKey.appendChild(div);
+    }
+    
+    document.getElementById('answer').style.display = 'block';
+    
+    // Scroll to results
+    scoreElement.scrollIntoView({ behavior: 'smooth' });
+    
+    // Disable submit button
+    document.getElementById('submitBtn').disabled = true;
+}
+
+// Event listeners
+document.addEventListener('DOMContentLoaded', function() {
+    // Start the timer when page loads
+    startTimer();
+    
+    // Update progress bar when an answer is selected
+    document.querySelectorAll('input[type="radio"]').forEach(radio => {
+        radio.addEventListener('change', updateProgressBar);
+    });
+    
+    // Initial progress bar update
+    updateProgressBar();
+    
+    // Attach submit function to button
+    document.getElementById('submitBtn').addEventListener('click', submitExam);
+    
+    // Keyboard navigation for questions
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            window.scrollBy(0, 100);
+        } else if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            window.scrollBy(0, -100);
+        }
+    });
+});
+    </script>
+    <a href="Biology-exam.html" class="back-button">
+        <i class="fas fa-arrow-left"></i>Back
+</body>
+</html>

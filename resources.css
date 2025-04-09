@@ -1,0 +1,136 @@
+/* General Styling */
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(to right, #e0eafc, #cfdef3); /* Soft gradient background */
+    color: #333;
+}
+
+header h1 {
+    text-align: center;
+    font-size: 3em;
+    color: #006400; /* Dark green for Natural Sciences */
+    margin-top: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+}
+
+header h1.social {
+    color: #8b0000; /* Dark red for Social Sciences */
+}
+
+/* Resource Cards Styling */
+.resources {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin: 20px auto;
+    max-width: 1200px;
+}
+
+.card {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Depth effect */
+    text-align: center;
+    width: 300px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-10px); /* Lift on hover */
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.4); /* Enhanced shadow */
+}
+
+.card h2 {
+    font-size: 1.7em;
+    color: #4caf50; /* Green for headings */
+    margin-bottom: 10px;
+}
+
+.card h2.social {
+    color: #c80000; /* Red for Social Sciences headings */
+}
+
+.card p {
+    font-size: 1em;
+    margin: 15px 0;
+    color: #555; /* Softer text */
+}
+
+.card button {
+    margin-top: 10px;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 25px;
+    background: linear-gradient(45deg, #6a5acd, #4169e1); /* Modern gradient */
+    color: white;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.card button:hover {
+    background: linear-gradient(45deg, #483d8b, #1e90ff); /* Darker hover effect */
+    transform: scale(1.1); /* Slight zoom */
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .resources {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card {
+        width: 90%;
+    }
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.dropdown-nav {
+    width: 200px;
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    border: none;
+}
+
+.dropdown-nav select {
+    width: 100%;
+    padding: 10px;
+    background-color: #444;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown-nav select:hover {
+    background-color: #575757;
+}
+.back1 {
+    margin: 50px;
+    width: 100px;
+    height: 50px;
+    border-radius: 6px;
+    background: linear-gradient(480deg, purple, black);
+    color: white;
+    border: none;
+    font-size: 1.5em;
+    background-color: #6a5acd;
+
+}
+.back1:hover {
+    border-radius: 4px;
+    background: linear-gradient(480deg, rgb(49, 124, 223),rgb(97, 13, 175));
+    color: white;
+    width: 100px;
+    height: 50px;
+}

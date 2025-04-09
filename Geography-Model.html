@@ -1,0 +1,1283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geography Practice Exam</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f7fa;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e1e5ee;
+        }
+
+        h1 {
+            color: #2c3e50;
+            font-size: 2.5rem;
+        }
+
+        h2 {
+            color: #3498db;
+            margin-top: 30px;
+        }
+
+        /* Compact Timer Styles */
+        .timer-container {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            font-family: 'Arial', sans-serif;
+            z-index: 1000;
+            text-align: center;
+            width: 120px;
+        }
+        
+        .timer-display {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 3px 0;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+        }
+        
+        .timer-label {
+            font-size: 0.8rem;
+            opacity: 0.9;
+            margin-bottom: 2px;
+        }
+        
+        .timer-progress {
+            height: 3px;
+            background: rgba(255,255,255,0.3);
+            border-radius: 3px;
+            margin-top: 6px;
+            overflow: hidden;
+        }
+        
+        .timer-progress-bar {
+            height: 100%;
+            background: white;
+            width: 100%;
+            transition: width 1s linear;
+        }
+        
+        .timer-warning {
+            animation: pulse 1s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 99, 71, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(255, 99, 71, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 99, 71, 0); }
+        }
+
+        /* Exam Content Styles */
+        .card {
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+        }
+
+        .question {
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #e1e5ee;
+        }
+
+        .question:last-child {
+            border-bottom: none;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+
+        input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        .submit-btn {
+            display: block;
+            width: 200px;
+            margin: 30px auto;
+            padding: 12px;
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .answer {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 30px;
+            display: none;
+        }
+
+        .score {
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 20px;
+            color: #2c3e50;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Compact Timer -->
+    <div class="timer-container" id="timerContainer">
+        <div class="timer-label">Time Remaining</div>
+        <div class="timer-display" id="timerDisplay">110:00</div>
+        <div class="timer-progress">
+            <div class="timer-progress-bar" id="timerProgress"></div>
+        </div>
+    </div>
+
+    <header>
+        <h1>Geography Practice Exam</h1>
+    </header>
+
+    <main>
+        <section class="resources">
+            <article class="card">
+                <h2>Geography General Questions</h2>
+                <p>Please answer the questions below:</p>
+                <div class="questions-container">
+                    <!-- Questions 1-15 -->
+                    <div class="question">
+                        <label>1. Who is known as the 'father of geography'?</label><br>
+                        <input type="radio" name="question1" value="A"> A) Alexander Von Humboldt<br>
+                        <input type="radio" name="question1" value="B"> B) Carl Ritter<br>
+                        <input type="radio" name="question1" value="C"> C) Eratosthenes<br>
+                        <input type="radio" name="question1" value="D"> D) Aristotle<br>
+                    </div>
+                    
+                    <div class="question">
+                        <label>2. Which of the following statements about human geography is true?</label><br>
+                        <input type="radio" name="question2" value="A"> A) It is concerned only with landforms and physical features.<br>
+                        <input type="radio" name="question2" value="B"> B) It studies the relationship between humans and the natural environment.<br>
+                        <input type="radio" name="question2" value="C"> C) It deals with the movement of tectonic plates.<br>
+                        <input type="radio" name="question2" value="D"> D) It is a subfield of climatology.<br>
+                    </div>
+                    
+                    <div class="question">
+                        <label>3. If you were a geographer studying the spread of a disease in various cities, which area of human geography would you most likely focus on?</label><br>
+                        <input type="radio" name="question3" value="A"> A) Economic geography<br>
+                        <input type="radio" name="question3" value="B"> B) Cultural geography<br>
+                        <input type="radio" name="question3" value="C"> C) Population geography<br>
+                        <input type="radio" name="question3" value="D"> D) Historical geography<br>
+                    </div>
+                    
+                    <!-- Questions 4-15 -->
+                    <div class="question">
+                        <label>4. Which of the following is NOT a component of the earth's surface?</label><br>
+                        <input type="radio" name="question4" value="A"> A) Hydrosphere<br>
+                        <input type="radio" name="question4" value="B"> B) Lithosphere<br>
+                        <input type="radio" name="question4" value="C"> C) Astral sphere<br>
+                        <input type="radio" name="question4" value="D"> D) Atmosphere<br>
+                    </div>
+                    
+                    <div class="question">
+                        <label>5. Which of the following is NOT a key feature of maps?</label><br>
+                        <input type="radio" name="question5" value="A"> A) Maps are always smaller than the area they represent.<br>
+                        <input type="radio" name="question5" value="B"> B) Maps provide a simplified representation of the Earth's surface.<br>
+                        <input type="radio" name="question5" value="C"> C) Maps are three-dimensional representations.<br>
+                        <input type="radio" name="question5" value="D"> D) Maps use conventional signs and symbols to represent features.<br>
+                    </div>
+                    
+                    <div class="question">
+                        <label>6. Which of the following terms refers to the horizontal lines on a map that indicate distance north or south of the equator?</label><br>
+                        <input type="radio" name="question6" value="A"> A) Longitude<br>
+                        <input type="radio" name="question6" value="B"> B) Grid Reference<br>
+                        <input type="radio" name="question6" value="C"> C) Latitude<br>
+                        <input type="radio" name="question6" value="D"> D) Magnetic Declination<br>
+                    </div>
+                    
+                    <div class="question">
+                        <label>7. To support urban planning in a city, which type of map would be most useful in illustrating elevation changes, roads, and utility systems?</label><br>
+                        <input type="radio" name="question7" value="A"> A) General-purpose map<br>
+                        <input type="radio" name="question7" value="B"> B) Climate map<br>
+                        <input type="radio" name="question7" value="C"> C) Specific-purpose map<br>
+                        <input type="radio" name="question7" value="D"> D) Satellite map<br>
+                    </div>
+                    
+                    <div class="question">
+                        <label>8. In which case would a national grid system be used on a map?</label><br>
+                        <input type="radio" name="question8" value="A"> A) For showing global longitude and latitude lines<br>
+                        <input type="radio" name="question8" value="B"> B) For showing country-specific reference points<br>
+                        <input type="radio" name="question8" value="C"> C) For indicating magnetic declination<br>
+                        <input type="radio" name="question8" value="D"> D) For determining global population density<br>
+                    </div>
+                    
+                    <div class="question">
+                        <label>9. If you were tasked with creating a political map, which of the following features would be most important to include?</label><br>
+                        <input type="radio" name="question9" value="A"> A) Elevation levels<br>
+                        <input type="radio" name="question9" value="B"> B) Boundaries of countries, states, or regions<br>
+                        <input type="radio" name="question9" value="C"> C) Tourist attractions<br>
+                        <input type="radio" name="question9" value="D"> D) Rivers and lakes<br>
+                    </div>
+                    
+                    <div class="question">
+                        <label>10. Which type of fault is caused by tension forces?</label><br>
+                        <input type="radio" name="question10" value="A"> A) Reverse fault<br>
+                        <input type="radio" name="question10" value="B"> B) Normal fault<br>
+                        <input type="radio" name="question10" value="C"> C) Strike-slip fault<br>
+                        <input type="radio" name="question10" value="D"> D) Oblique fault<br>
+                    </div>
+                    
+                    <div class="question">
+                        <label>11. Given the following fault types: normal, reverse, and strike-slip, which of them is most commonly associated with horizontal shearing?</label><br>
+                        <input type="radio" name="question11" value="A"> A) Normal fault<br>
+                        <input type="radio" name="question11" value="B"> B) Reverse fault<br>
+                        <input type="radio" name="question11" value="C"> C) Strike-slip fault<br>
+                        <input type="radio" name="question11" value="D"> D) Both normal and reverse faults<br>
+                    </div>
+                    
+                    <div class="question">
+                        <label>12. Which of the following natural processes is most beneficial for agriculture in the long term?</label><br>
+                        <input type="radio" name="question12" value="A"> A) Earthquakes, because they create new landforms<br>
+                        <input type="radio" name="question12" value="B"> B) Volcanism, because it creates fertile soil after eruptions<br>
+                        <input type="radio" name="question12" value="C"> C) Tsunamis, because they bring nutrients from the ocean<br>
+                        <input type="radio" name="question12" value="D"> D) Landslides, because they redistribute topsoil<br>
+                    </div>
+                    
+                    <div class="question">
+                        <label>13. Which process is primarily responsible for transferring heat from the Earth's interior to its surface?</label><br>
+                        <input type="radio" name="question13" value="A"> A) Radiation, because it emits heat directly to space<br>
+                        <input type="radio" name="question13" value="B"> B) Conduction, because rocks are good conductors<br>
+                        <input type="radio" name="question13" value="C"> C) Convection, because it transfers heat by the movement of air masses<br>
+                        <input type="radio" name="question13" value="D"> D) Advection, because it moves heat horizontally<br>
+                    </div>
+                    
+                    <div class="question">
+                        <label>14. Why does frost action lead to physical weathering?</label><br>
+                        <input type="radio" name="question14" value="A"> A) Water freezes in cracks, causing rocks to expand and break.<br>
+                        <input type="radio" name="question14" value="B"> B) Temperature variations cause the rocks to contract and expand.<br>
+                        <input type="radio" name="question14" value="C"> C) Water dissolves minerals in rocks, weakening them.<br>
+                        <input type="radio" name="question14" value="D"> D) Wind carries sand that abrades the rock surface.<br>
+                    </div>
+                    
+                    <div class="question">
+                        <label>15. You are hiking through a mountain range where temperatures fluctuate greatly. What type of weathering is likely to be most prominent?</label><br>
+                        <input type="radio" name="question15" value="A"> A) Chemical weathering by acid rain<br>
+                        <input type="radio" name="question15" value="B"> B) Physical weathering by freeze-thaw action<br>
+                        <input type="radio" name="question15" value="C"> C) Biological weathering by plant roots<br>
+                        <input type="radio" name="question15" value="D"> D) Erosion by wind<br>
+                    </div>
+                    <div class="question">
+                        <label>16. Which of the following is an example of how erosion by glaciers differs from erosion by wind?</label><br>
+                        <input type="radio" name="question16" value="A"> A) Glaciers create sharp, angular landforms, while wind forms smooth, rounded features.<br>
+                        <input type="radio" name="question16" value="B"> B) Glaciers erode only through water, while wind erosion is caused by air.<br>
+                        <input type="radio" name="question16" value="C"> C) Wind erosion occurs in deserts, but glaciers affect tropical regions.<br>
+                        <input type="radio" name="question16" value="D"> D) Glaciers transport large boulders, while wind transports only fine sand.<br>
+                    </div>
+                    
+                    <div class="question">
+                        <label>17. How does energy flow through an ecosystem, starting from the producers?</label><br>
+                        <input type="radio" name="question17" value="A"> A) Producers transfer energy directly to decomposers.<br>
+                        <input type="radio" name="question17" value="B"> B) Energy flows from producers to primary consumers, then to secondary consumers, and finally to decomposers.<br>
+                        <input type="radio" name="question17" value="C"> C) Energy flows from producers directly to secondary consumers.<br>
+                        <input type="radio" name="question17" value="D"> D) Energy is passed from decomposers to producers.<br>
+                    </div>
+                    
+                    <div class="question">
+                        <label>18. Which of the following is an example of how the distance-time decay effect has been reduced?</label><br>
+                        <input type="radio" name="question18" value="A"> A) People now travel slower to remote locations.<br>
+                        <input type="radio" name="question18" value="B"> B) Perishable goods can reach consumers without spoiling.<br>
+                        <input type="radio" name="question18" value="C"> C) Markets are restricted to local areas for goods distribution.<br>
+                        <input type="radio" name="question18" value="D"> D) Industrial workers must live near their workplaces.<br>
+                    </div>
+                    
+                    <div class="question">
+                        <label>19. What is the term used to describe the decline in interaction between two locations as the distance and time between them increases?</label><br>
+                        <input type="radio" name="question19" value="A"> A) Globalization<br>
+                        <input type="radio" name="question19" value="B"> B) Distance-time decay<br>
+                        <input type="radio" name="question19" value="C"> C) Time-space compression<br>
+                        <input type="radio" name="question19" value="D"> D) Urbanization<br>
+                    </div>
+                    
+                    <div class="question">
+                        <label>20. In an ecosystem, what would happen if the population of decomposers were removed?</label><br>
+                        <input type="radio" name="question20" value="A"> A) The ecosystem would become more productive, with faster energy transfer.<br>
+                        <input type="radio" name="question20" value="B"> B) Dead organisms would not be broken down, leading to a buildup of waste and a decrease in nutrient cycling.<br>
+                        <input type="radio" name="question20" value="C"> C) Producers would start feeding on secondary consumers to obtain nutrients.<br>
+                        <input type="radio" name="question20" value="D"> D) The energy flow through the ecosystem would speed up.<br>
+                    </div>
+                    
+                    <div class="question">
+                        <label>21. Why does Ethiopia experience different climates across its regions despite being a tropical country?</label><br>
+                        <input type="radio" name="question21" value="A"> A) Due to the variations in its latitude<br>
+                        <input type="radio" name="question21" value="B"> B) Because of the effects of altitude on temperature<br>
+                        <input type="radio" name="question21" value="C"> C) Due to ocean currents surrounding the country<br>
+                        <input type="radio" name="question21" value="D"> D) Because it is located near the equator<br>
+                    </div>
+                    
+                    <div class="question">
+                        <label>22. What caused the separation of Pangaea into two large landmasses, Gondwana and Laurasia?</label><br>
+                        <input type="radio" name="question22" value="A"> A) Earth's cooling<br>
+                        <input type="radio" name="question22" value="B"> B) Seafloor spreading<br>
+                        <input type="radio" name="question22" value="C"> C) Volcanic activity<br>
+                        <input type="radio" name="question22" value="D"> D) Continental drift<br>
+                    </div>
+                    
+                    <div class="question">
+                        <label>23. Which event marked the end of the Paleozoic era?</label><br>
+                        <input type="radio" name="question23" value="A"> A) The formation of Pangaea<br>
+                        <input type="radio" name="question23" value="B"> B) The collision of India and Eurasia<br>
+                        <input type="radio" name="question23" value="C"> C) The emergence of mammals<br>
+                        <input type="radio" name="question23" value="D"> D) The mass extinction of amphibians<br>
+                    </div>
+                    
+                    <div class="question">
+                        <label>24. What significant geological event occurred during the Cenozoic era?</label><br>
+                        <input type="radio" name="question24" value="A"> A) Formation of Pangaea<br>
+                        <input type="radio" name="question24" value="B"> B) The continents assumed their present positions<br>
+                        <input type="radio" name="question24" value="C"> C) Mass extinction of dinosaurs<br>
+                        <input type="radio" name="question24" value="D"> D) First appearance of land mammals<br>
+                    </div>
+                    
+                    <div class="question">
+                        <label>25. What is the main purpose of the geological timescale?</label><br>
+                        <input type="radio" name="question25" value="A"> A) To describe the types of rocks found on Earth<br>
+                        <input type="radio" name="question25" value="B"> B) To measure the temperature changes throughout Earth's history<br>
+                        <input type="radio" name="question25" value="C"> C) To classify fossils by their physical characteristics<br>
+                        <input type="radio" name="question25" value="D"> D) To explain the sequence of Earth's geological events and life forms<br>
+                    </div>
+                    
+                    <div class="question">
+                        <label>26. What does the principle of superposition tell us about rock layers?</label><br>
+                        <input type="radio" name="question26" value="A"> A) The oldest layers are found on top of younger layers.<br>
+                        <input type="radio" name="question26" value="B"> B) The youngest layers are found beneath the older layers.<br>
+                        <input type="radio" name="question26" value="C"> C) Older rock layers are found at the bottom of the sequence, while younger layers are found at the top.<br>
+                        <input type="radio" name="question26" value="D"> D) Rock layers are formed at irregular intervals and cannot be ordered.<br>
+                    </div>
+                    
+                    <div class="question">
+                        <label>27. What is the main reason the climate tends to be more moderate in the Southern Hemisphere?</label><br>
+                        <input type="radio" name="question27" value="A"> A) The Southern Hemisphere has more landmass.<br>
+                        <input type="radio" name="question27" value="B"> B) Oceans in the Southern Hemisphere release large amounts of heat energy.<br>
+                        <input type="radio" name="question27" value="C"> C) The Southern Hemisphere is closer to the equator.<br>
+                        <input type="radio" name="question27" value="D"> D) The Northern Hemisphere experiences extreme weather patterns.<br>
+                    </div>
+                    
+                    <div class="question">
+                        <label>28. Imagine that you are tasked with creating a new model of Earth's hydrosphere. Which of the following features would be most important to include in your model to accurately represent the Earth's water distribution?</label><br>
+                        <input type="radio" name="question28" value="A"> A) The distribution of oceans, ice caps, groundwater, and water vapor<br>
+                        <input type="radio" name="question28" value="B"> B) The sizes of the continents and the major rivers.<br>
+                        <input type="radio" name="question28" value="C"> C) The geographic location of the continents relative to each other.<br>
+                        <input type="radio" name="question28" value="D"> D) The land-to-water ratio in different hemispheres.<br>
+                    </div>
+                    
+                    <div class="question">
+                        <label>29. Given that the Köppen system does not consider factors such as sunshine quantity or cloud cover, how would this impact its effectiveness in regions with frequent cloud cover?</label><br>
+                        <input type="radio" name="question29" value="A"> A) It would likely misclassify the climate, as cloud cover has a significant impact on temperature.<br>
+                        <input type="radio" name="question29" value="B"> B) It would provide an accurate classification because temperature and precipitation alone are sufficient.<br>
+                        <input type="radio" name="question29" value="C"> C) Cloud cover would be irrelevant to the classification.<br>
+                        <input type="radio" name="question29" value="D"> D) The system would overestimate the amount of rainfall in such regions.<br>
+                    </div>
+                    
+                    <div class="question">
+                        <label>30. Which of the following is a characteristic of the Tropical climate "A" in Köppen's climate classification?</label><br>
+                        <input type="radio" name="question30" value="A"> A) Average temperature below 18°C all year<br>
+                        <input type="radio" name="question30" value="B"> B) All months have an average temperature above 18°C<br>
+                        <input type="radio" name="question30" value="C"> C) Has a dry winter season<br>
+                        <input type="radio" name="question30" value="D"> D) Average temperature of the coldest month is below 18°C<br>
+                    </div>
+                    <div class="question">
+                        <label>31. What distinguishes the Dry Climate (B) in the Köppen system from other climate types?</label><br>
+                        <input type="radio" name="question31" value="A"> A) It is based solely on temperature variations<br>
+                        <input type="radio" name="question31" value="B"> B) It is the warmest climate type with year-round rainfall<br>
+                        <input type="radio" name="question31" value="C"> C) It includes areas with permafrost and extremely cold winters<br>
+                        <input type="radio" name="question31" value="D"> D) It is primarily determined by precipitation deficiencies<br>
+                    </div>
+
+                    <div class="question">
+                        <label>32. In the Köppen classification, which climate type would you expect to see in a region with cold winters, hot summers, and moderate rainfall year-round?</label><br>
+                        <input type="radio" name="question32" value="A"> A) Df (Humid Continental)<br>
+                        <input type="radio" name="question32" value="B"> B) Cfa (Humid Subtropical)<br>
+                        <input type="radio" name="question32" value="C"> C) Aw (Tropical Wet and Dry)<br>
+                        <input type="radio" name="question32" value="D"> D) Af (Tropical Wet)<br>
+                    </div>
+
+                    <div class="question">
+                        <label>33. In the Mid-latitude Wet (Cfb) region, what is the primary source of precipitation?</label><br>
+                        <input type="radio" name="question33" value="A"> A) Convectional rainstorms during the summer<br>
+                        <input type="radio" name="question33" value="B"> B) Moisture from the Atlantic Ocean and the influence of tropical air masses<br>
+                        <input type="radio" name="question33" value="C"> C) Frontal weather systems brought by mid-latitude cyclones<br>
+                        <input type="radio" name="question33" value="D"> D) The seasonal movement of the Inter-Tropical Convergence Zone<br>
+                    </div>
+
+                    <div class="question">
+                        <label>34. Which of the following is a key characteristic of the Polar Tundra (ET) climate?</label><br>
+                        <input type="radio" name="question34" value="A"> A) Extremely cold winters and warm summers with high precipitation<br>
+                        <input type="radio" name="question34" value="B"> B) Cold winters, cool summers, and low annual precipitation<br>
+                        <input type="radio" name="question34" value="C"> C) Moderate temperatures year-round and consistent rainfall<br>
+                        <input type="radio" name="question34" value="D"> D) High annual temperatures and minimal snowfall<br>
+                    </div>
+
+                    <div class="question">
+                        <label>35. What is the primary cause of the variation in day length throughout the year?</label><br>
+                        <input type="radio" name="question35" value="A"> A) The Earth's rotation<br>
+                        <input type="radio" name="question35" value="B"> B) The Earth's elliptical orbit<br>
+                        <input type="radio" name="question35" value="C"> C) The Earth's revolution around the Sun<br>
+                        <input type="radio" name="question35" value="D"> D) The tilt of the Earth's axis<br>
+                    </div>
+
+                    <div class="question">
+                        <label>36. How does atmospheric circulation contribute to climate differences between two locations at the same latitude?</label><br>
+                        <input type="radio" name="question36" value="A"> A) Atmospheric circulation causes one location to have more direct sunlight, leading to higher temperatures<br>
+                        <input type="radio" name="question36" value="B"> B) Atmospheric circulation affects the direction of prevailing winds, which can bring moisture or dry conditions to different regions<br>
+                        <input type="radio" name="question36" value="C"> C) Atmospheric circulation results in cooler temperatures at high altitudes, regardless of latitude<br>
+                        <input type="radio" name="question36" value="D"> D) Atmospheric circulation causes high pressure to build up near the equator, making the climate uniformly warm<br>
+                    </div>
+
+                    <div class="question">
+                        <label>37. If ocean currents carrying warm water are redirected due to changes in wind patterns, what could be the potential impact on nearby coastal climates?</label><br>
+                        <input type="radio" name="question37" value="A"> A) The coastal climate will become cooler as cold water replaces the warm current<br>
+                        <input type="radio" name="question37" value="B"> B) The coastal climate will become wetter as more moisture is carried from the ocean<br>
+                        <input type="radio" name="question37" value="C"> C) The coastal climate will remain unaffected, as ocean currents have no long-term impact<br>
+                        <input type="radio" name="question37" value="D"> D) The coastal climate will become hotter and drier due to the warming of ocean surface waters<br>
+                    </div>
+
+                    <div class="question">
+                        <label>38. Which of the following crops are commonly grown in the Woina-Dega climate zone of Ethiopia?</label><br>
+                        <input type="radio" name="question38" value="A"> A) Sorghum, finger millet, and sesame<br>
+                        <input type="radio" name="question38" value="B"> B) Barley, wheat, maize, and chickpeas<br>
+                        <input type="radio" name="question38" value="C"> C) Wheat, pulses, and highland oil seeds<br>
+                        <input type="radio" name="question38" value="D"> D) Sorghum, maize, and sesame<br>
+                    </div>
+
+                    <div class="question">
+                        <label>39. Which of the following statements best describes the role of land as a natural resource?</label><br>
+                        <input type="radio" name="question39" value="A"> A) Land is a resource that can only be used for agricultural purposes<br>
+                        <input type="radio" name="question39" value="B"> B) Land is both a physical commodity and an abstract concept involving ownership and use rights<br>
+                        <input type="radio" name="question39" value="C"> C) Land is a resource that only affects human activity in urban areas<br>
+                        <input type="radio" name="question39" value="D"> D) Land's role is limited to providing space for humans to live<br>
+                    </div>
+
+                    <div class="question">
+                        <label>40. Which of the following best defines renewable resources?</label><br>
+                        <input type="radio" name="question40" value="A"> A) Resources that are only found in specific locations and cannot be regenerated<br>
+                        <input type="radio" name="question40" value="B"> B) Resources that are found in finite amounts and cannot be replaced<br>
+                        <input type="radio" name="question40" value="C"> C) Resources that are always in constant supply and never depleted<br>
+                        <input type="radio" name="question40" value="D"> D) Resources that can regenerate themselves at a sustainable rate if not overused<br>
+                    </div>
+
+                    <div class="question">
+                        <label>41. Which of the following is an example of a non-renewable resource?</label><br>
+                        <input type="radio" name="question41" value="A"> A) Wind<br>
+                        <input type="radio" name="question41" value="B"> B) Solar energy<br>
+                        <input type="radio" name="question41" value="C"> C) Coal<br>
+                        <input type="radio" name="question41" value="D"> D) Forests<br>
+                    </div>
+
+                    <div class="question">
+                        <label>42. What is the relationship between deforestation and climate change?</label><br>
+                        <input type="radio" name="question42" value="A"> A) Deforestation reduces soil fertility, which causes a decrease in carbon dioxide<br>
+                        <input type="radio" name="question42" value="B"> B) Deforestation contributes to carbon emissions, accelerating climate change<br>
+                        <input type="radio" name="question42" value="C"> C) Deforestation leads to more forest growth, which mitigates climate change<br>
+                        <input type="radio" name="question42" value="D"> D) Deforestation has no impact on climate change<br>
+                    </div>
+
+                    <div class="question">
+                        <label>43. Which of the following is the main consequence of deforestation?</label><br>
+                        <input type="radio" name="question43" value="A"> A) Increased soil fertility<br>
+                        <input type="radio" name="question43" value="B"> B) Decreased water pollution<br>
+                        <input type="radio" name="question43" value="C"> C) Soil erosion and loss of vegetation cover<br>
+                        <input type="radio" name="question43" value="D"> D) Reduced demand for timber<br>
+                    </div>
+
+                    <div class="question">
+                        <label>44. Imagine you are designing a sustainable land management program for a community facing severe land degradation. Which of the following actions would be most innovative and effective?</label><br>
+                        <input type="radio" name="question44" value="A"> A) Encouraging monoculture farming for higher yields<br>
+                        <input type="radio" name="question44" value="B"> B) Reducing the use of animal manure to conserve resources<br>
+                        <input type="radio" name="question44" value="C"> C) Limiting land use entirely to prevent degradation<br>
+                        <input type="radio" name="question44" value="D"> D) Implementing a combination of afforestation, terracing, and crop rotation<br>
+                    </div>
+
+                    <div class="question">
+                        <label>45. Which of the following features is common to all transboundary rivers?</label><br>
+                        <input type="radio" name="question45" value="A"> A) They flow within the borders of a single country<br>
+                        <input type="radio" name="question45" value="B"> B) They are exclusively located in Africa<br>
+                        <input type="radio" name="question45" value="C"> C) They do not provide economic benefits to the countries involved<br>
+                        <input type="radio" name="question45" value="D"> D) They are shared by two or more countries<br>
+                    </div>
+
+                    <div class="question">
+                        <label>46. What would be the result if a shared river such as the Zambezi River was poorly managed, considering its significant importance to multiple countries?</label><br>
+                        <input type="radio" name="question46" value="A"> A) Reduced cooperation and economic growth across the countries sharing the river<br>
+                        <input type="radio" name="question46" value="B"> B) Increased ecological balance and biodiversity<br>
+                        <input type="radio" name="question46" value="C"> C) The river would only affect the country closest to its source<br>
+                        <input type="radio" name="question46" value="D"> D) There would be no impact since the river is naturally replenished<br>
+                    </div>
+
+                    <div class="question">
+                        <label>47. Which of the following is an example of a regional institution focused on the sustainable management of shared water resources?</label><br>
+                        <input type="radio" name="question47" value="A"> A) United Nations<br>
+                        <input type="radio" name="question47" value="B"> B) World Trade Organization<br>
+                        <input type="radio" name="question47" value="C"> C) Nile Basin Initiative (NBI)<br>
+                        <input type="radio" name="question47" value="D"> D) International Red Cross<br>
+                    </div>
+
+                    <div class="question">
+                        <label>48. To prevent future conflicts over the Nile River, what innovative approach could be adopted for water management?</label><br>
+                        <input type="radio" name="question48" value="A"> A) Developing joint water-sharing projects and infrastructure that benefit all riparian countries<br>
+                        <input type="radio" name="question48" value="B"> B) Giving exclusive control of Nile water to Sudan and Ethiopia while Egypt gets no share<br>
+                        <input type="radio" name="question48" value="C"> C) Encouraging only one country to build new dams for all riparian countries' use<br>
+                        <input type="radio" name="question48" value="D"> D) Limiting all industrial use of Nile water and only focusing on agriculture<br>
+                    </div>
+
+                    <div class="question">
+                        <label>49. Which of the following is the most accurate description of the population growth trend in the 20th century?</label><br>
+                        <input type="radio" name="question49" value="A"> A) Population growth has been steady since 1800<br>
+                        <input type="radio" name="question49" value="B"> B) The world population grew dramatically; especially after the mid-19th century<br>
+                        <input type="radio" name="question49" value="C"> C) Population remained constant throughout the century<br>
+                        <input type="radio" name="question49" value="D"> D) The world's population started declining after the 1950s<br>
+                    </div>
+
+                    <div class="question">
+                        <label>50. What is the estimated world population by the year 2050 according to the "medium variant" projection?</label><br>
+                        <input type="radio" name="question50" value="A"> A) 7.7 billion<br>
+                        <input type="radio" name="question50" value="B"> B) 8.5 billion<br>
+                        <input type="radio" name="question50" value="C"> C) 9.7 billion<br>
+                        <input type="radio" name="question50" value="D"> D) 10.7 billion<br>
+                    </div>
+                
+                <div class="question">
+                    <label>51. What does a triangular-shaped population pyramid typically indicate in terms of population structure?</label><br>
+                    <input type="radio" name="question51" value="A"> A) A population with equal numbers of young and old people<br>
+                    <input type="radio" name="question51" value="B"> B) A declining population with many elderly individuals<br>
+                    <input type="radio" name="question51" value="C"> C) A stable population with low fertility and mortality rates<br>
+                    <input type="radio" name="question51" value="D"> D) A youthful population with a large proportion of children<br>
+                </div>
+
+                <div class="question">
+                    <label>52. How does socioeconomic change and urbanization impact population growth according to the demographic transition model?</label><br>
+                    <input type="radio" name="question52" value="A"> A) It leads to high birth rates and rapid population growth<br>
+                    <input type="radio" name="question52" value="B"> B) It has no effect on population dynamics<br>
+                    <input type="radio" name="question52" value="C"> C) It leads to increased mortality and population decline<br>
+                    <input type="radio" name="question52" value="D"> D) It causes a decline in birth rates, slowing population growth<br>
+                </div>
+
+                <div class="question">
+                    <label>53. What is the primary reason for the population explosion in less developed countries (LDCs) after World War II?</label><br>
+                    <input type="radio" name="question53" value="A"> A) Increased migration to urban areas<br>
+                    <input type="radio" name="question53" value="B"> B) Improved healthcare and disease management<br>
+                    <input type="radio" name="question53" value="C"> C) Declining birth rates<br>
+                    <input type="radio" name="question53" value="D"> D) Advances in education systems<br>
+                </div>
+
+                <div class="question">
+                    <label>54. Given that countries like Bulgaria, Latvia, and Ukraine are experiencing population decline, which of the following problems will they likely face?</label><br>
+                    <input type="radio" name="question54" value="A"> A) Youthful population pressures on education systems<br>
+                    <input type="radio" name="question54" value="B"> B) A reduced labor force and higher dependency ratios<br>
+                    <input type="radio" name="question54" value="C"> C) Increasing migration from rural to urban areas<br>
+                    <input type="radio" name="question54" value="D"> D) Higher birth rates leading to overcrowded cities<br>
+                </div>
+
+                <div class="question">
+                    <label>55. If a country experiences a high level of net immigration, how might this affect its labor market?</label><br>
+                    <input type="radio" name="question55" value="A"> A) It will create a labor shortage due to higher birth rates<br>
+                    <input type="radio" name="question55" value="B"> B) It will lead to a decrease in job opportunities for immigrants<br>
+                    <input type="radio" name="question55" value="C"> C) It will have no impact on the labor market<br>
+                    <input type="radio" name="question55" value="D"> D) It may result in a more diverse workforce but could lead to job competition for low-skilled natives<br>
+                </div>
+
+                <div class="question">
+                    <label>56. Which of the following statements best evaluates the impact of immigration on receiving countries?</label><br>
+                    <input type="radio" name="question56" value="A"> A) Immigration increases the economic burdens of the receiving countries without contributing to their growth<br>
+                    <input type="radio" name="question56" value="B"> B) Immigration results in a uniformly positive economic effect across all sectors<br>
+                    <input type="radio" name="question56" value="C"> C) Immigration leads to an immediate increase in public services and social benefits for all residents<br>
+                    <input type="radio" name="question56" value="D"> D) Immigration diversifies the workforce, but may also lead to social tensions and competition for jobs<br>
+                </div>
+
+                <div class="question">
+                    <label>57. If a country is experiencing severe strain from rapid urbanization, what could a population policy focus on to address this issue?</label><br>
+                    <input type="radio" name="question57" value="A"> A) Encouraging people to stay in urban areas to promote economic growth<br>
+                    <input type="radio" name="question57" value="B"> B) Increasing rural to urban migration to stimulate economic development<br>
+                    <input type="radio" name="question57" value="C"> C) Promoting population redistribution to smaller urban or rural areas<br>
+                    <input type="radio" name="question57" value="D"> D) Limiting urban infrastructure and services to prevent overcrowding<br>
+                </div>
+
+                <div class="question">
+                    <label>58. Which type of evidence supports the idea that continents were once connected?</label><br>
+                    <input type="radio" name="question58" value="A"> A) Similar fossils found on different continents<br>
+                    <input type="radio" name="question58" value="B"> B) Variations in ocean salinity<br>
+                    <input type="radio" name="question58" value="C"> C) Differences in atmospheric pressure<br>
+                    <input type="radio" name="question58" value="D"> D) Variations in forest types<br>
+                </div>
+
+                <div class="question">
+                    <label>59. What conclusion can be drawn from the discovery of similar mountain belts on continents now separated by oceans?</label><br>
+                    <input type="radio" name="question59" value="A"> A) The mountain belts formed independently<br>
+                    <input type="radio" name="question59" value="B"> B) The continents have always been in their current positions<br>
+                    <input type="radio" name="question59" value="C"> C) The continents were once part of a single landmass<br>
+                    <input type="radio" name="question59" value="D"> D) Ocean currents caused similar formations on different continents<br>
+                </div>
+
+                <div class="question">
+                    <label>60. What are the two main layers involved in the plate tectonics theory?</label><br>
+                    <input type="radio" name="question60" value="A"> A) Lithosphere and Asthenosphere<br>
+                    <input type="radio" name="question60" value="B"> B) Crust and Inner Core<br>
+                    <input type="radio" name="question60" value="C"> C) Core and Mantle<br>
+                    <input type="radio" name="question60" value="D"> D) Mantle and Outer Core<br>
+                </div>
+
+                <div class="question">
+                    <label>61. According to the Plate Tectonics Theory, what allows the lithosphere to move?</label><br>
+                    <input type="radio" name="question61" value="A"> A) The asthenosphere's plastic-like behavior<br>
+                    <input type="radio" name="question61" value="B"> B) Strong winds in the atmosphere<br>
+                    <input type="radio" name="question61" value="C"> C) The gravitational pull of the moon<br>
+                    <input type="radio" name="question61" value="D"> D) Ocean currents below the crust<br>
+                </div>
+
+                <div class="question">
+                    <label>62. Why is the Plate Tectonics Theory considered a scientific revolution?</label><br>
+                    <input type="radio" name="question62" value="A"> A) It completely rejected Alfred Wegener's ideas<br>
+                    <input type="radio" name="question62" value="B"> B) It eliminated the need for fossil evidence in geology<br>
+                    <input type="radio" name="question62" value="C"> C) It only applies to the ocean floor<br>
+                    <input type="radio" name="question62" value="D"> D) It unified various geological processes under one framework<br>
+                </div>
+
+                <div class="question">
+                    <label>63. What type of plate boundary occurs when plates move apart from each other?</label><br>
+                    <input type="radio" name="question63" value="A"> A) Convergent Boundary<br>
+                    <input type="radio" name="question63" value="B"> B) Transform Boundary<br>
+                    <input type="radio" name="question63" value="C"> C) Divergent Boundary<br>
+                    <input type="radio" name="question63" value="D"> D) Subduction Boundary<br>
+                </div>
+
+                <div class="question">
+                    <label>64. Analyze why convection currents in the asthenosphere cause plate movement.</label><br>
+                    <input type="radio" name="question64" value="A"> A) They create pressure that fractures the crust<br>
+                    <input type="radio" name="question64" value="B"> B) Rising heat and material push plates apart, while sinking material pulls plates together<br>
+                    <input type="radio" name="question64" value="C"> C) They generate wind currents that push the plates<br>
+                    <input type="radio" name="question64" value="D"> D) The convection currents heat the lithosphere directly<br>
+                </div>
+
+                <div class="question">
+                    <label>65. Which geological processes must combine to create a caldera volcano?</label><br>
+                    <input type="radio" name="question65" value="A"> A) Faulting and seismic waves<br>
+                    <input type="radio" name="question65" value="B"> B) Erosion and folding<br>
+                    <input type="radio" name="question65" value="C"> C) Magma chamber drainage and cone collapse<br>
+                    <input type="radio" name="question65" value="D"> D) Subduction and plate divergence<br>
+                </div>
+
+                <div class="question">
+                    <label>66. How does running water cause sheet erosion?</label><br>
+                    <input type="radio" name="question66" value="A"> A) By forming underground caves in limestone areas<br>
+                    <input type="radio" name="question66" value="B"> B) By carving deep valleys in the upper course of rivers<br>
+                    <input type="radio" name="question66" value="C"> C) By transporting rocks through large rivers<br>
+                    <input type="radio" name="question66" value="D"> D) By evenly eroding the topsoil in a wide flow<br>
+                </div>
+
+                <div class="question">
+                    <label>67. Why is the 20th century considered likely the warmest in the last 1,000 years according to the IPCC's 2001 report?</label><br>
+                    <input type="radio" name="question67" value="A"> A) Due to increased volcanic activity<br>
+                    <input type="radio" name="question67" value="B"> B) Due to natural climate cycles<br>
+                    <input type="radio" name="question67" value="C"> C) Due to human activities such as deforestation and emissions<br>
+                    <input type="radio" name="question67" value="D"> D) Because of changes in solar radiation<br>
+                </div>
+
+                <div class="question">
+                    <label>68. What is the relationship between deforestation and greenhouse gases (GHGs)?</label><br>
+                    <input type="radio" name="question68" value="A"> A) Deforestation increases the Earth's ability to absorb GHGs<br>
+                    <input type="radio" name="question68" value="B"> B) Deforestation decreases the amount of carbon stored in trees, releasing more GHGs<br>
+                    <input type="radio" name="question68" value="C"> C) Deforestation reduces the greenhouse gases in the atmosphere by increasing sunlight<br>
+                    <input type="radio" name="question68" value="D"> D) Deforestation has no impact on greenhouse gas levels<br>
+                </div>
+
+                <div class="question">
+                    <label>69. What is the primary greenhouse gas responsible for warming the lower atmosphere?</label><br>
+                    <input type="radio" name="question69" value="A"> A) Nitrous Oxide (N2O)<br>
+                    <input type="radio" name="question69" value="B"> B) Methane (CH4)<br>
+                    <input type="radio" name="question69" value="C"> C) Carbon Dioxide (CO2)<br>
+                    <input type="radio" name="question69" value="D"> D) Water Vapor<br>
+                </div>
+
+                <div class="question">
+                    <label>70. How does deforestation contribute to global warming?</label><br>
+                    <input type="radio" name="question70" value="A"> A) By reducing the amount of CO2 absorbed through photosynthesis<br>
+                    <input type="radio" name="question70" value="B"> B) By increasing the amount of solar radiation absorbed by the Earth's surface<br>
+                    <input type="radio" name="question70" value="C"> C) By lowering the concentration of greenhouse gases<br>
+                    <input type="radio" name="question70" value="D"> D) By increasing the albedo of the Earth's surface<br>
+                </div>
+
+                <div class="question">
+                    <label>71. How can urbanization influence the local climate in comparison to surrounding rural areas?</label><br>
+                    <input type="radio" name="question71" value="A"> A) Urban areas have lower temperatures due to increased vegetation<br>
+                    <input type="radio" name="question71" value="B"> B) Urban areas are cooler at night because of higher albedo<br>
+                    <input type="radio" name="question71" value="C"> C) Urban areas experience warmer nights due to heat retention by buildings and roads<br>
+                    <input type="radio" name="question71" value="D"> D) Urban areas experience more rainfall because of reduced greenhouse gas emissions<br>
+                </div>
+                <div class="question">
+                    <label>72. Which region is expected to experience the greatest warming according to climate models?</label><br>
+                    <input type="radio" name="question72" value="A"> A) Coastal regions<br>
+                    <input type="radio" name="question72" value="B"> B) Tropical regions<br>
+                    <input type="radio" name="question72" value="C"> C) Low-latitude regions in the Southern Hemisphere<br>
+                    <input type="radio" name="question72" value="D"> D) High-latitude regions in the Northern Hemisphere<br>
+                </div>
+                
+                <div class="question">
+                    <label>73. How might the rise in sea level impact coastal communities?</label><br>
+                    <input type="radio" name="question73" value="A"> A) By increasing the availability of freshwater sources<br>
+                    <input type="radio" name="question73" value="B"> B) By reducing the frequency of storm surges<br>
+                    <input type="radio" name="question73" value="C"> C) By promoting the growth of coral reefs in the region<br>
+                    <input type="radio" name="question73" value="D"> D) By contaminating coastal groundwater supplies with saltwater<br>
+                </div>
+                
+                <div class="question">
+                    <label>74. What was the main goal of the Kyoto Protocol?</label><br>
+                    <input type="radio" name="question74" value="A"> A) To set voluntary targets for greenhouse gas emissions reduction across all countries<br>
+                    <input type="radio" name="question74" value="B"> B) To encourage countries to increase their use of fossil fuels for energy<br>
+                    <input type="radio" name="question74" value="C"> C) To reduce greenhouse gas emissions by at least 5% below 1990 levels in developed countries between 2008-2012<br>
+                    <input type="radio" name="question74" value="D"> D) To establish a framework for global climate change adaptation strategies<br>
+                </div>
+                <div class="question">
+                    <label>75. What is the main purpose of the Buenos Aires Plan of Action (BAPA) adopted at COP 10?</label><br>
+                    <input type="radio" name="question75" value="A"> A) To focus on global adaptation strategies and response measures<br>
+                    <input type="radio" name="question75" value="B"> B) To establish legally binding emission targets for all countries<br>
+                    <input type="radio" name="question75" value="C"> C) To create financial incentives for reducing emissions<br>
+                    <input type="radio" name="question75" value="D"> D) To implement carbon trading between countries<br>
+                </div>
+
+                <div class="question">
+                    <label>76. Ethiopia's CRGE strategy prioritizes which of the following agriculture-related practices to improve food security?</label><br>
+                    <input type="radio" name="question76" value="A"> A) Expansion of land for cultivation<br>
+                    <input type="radio" name="question76" value="B"> B) Soil-based emission reduction initiatives<br>
+                    <input type="radio" name="question76" value="C"> C) Reducing livestock production<br>
+                    <input type="radio" name="question76" value="D"> D) Increased deforestation<br>
+                </div>
+
+                <div class="question">
+                    <label>77. Ethiopia's CRGE strategy aims to leapfrog to modern technologies in the transportation sector. Which of the following initiatives would align with this goal?</label><br>
+                    <input type="radio" name="question77" value="A"> A) Increase use of petrol and diesel-powered vehicles<br>
+                    <input type="radio" name="question77" value="B"> B) Focus on road expansion without regard to fuel efficiency<br>
+                    <input type="radio" name="question77" value="C"> C) Increase carbon emissions from transportation<br>
+                    <input type="radio" name="question77" value="D"> D) Develop an electric rail network powered by renewable energy<br>
+                </div>
+
+                <div class="question">
+                    <label>78. How does Ethiopia's approach to forest management in the CRGE strategy contribute to its green economy goals?</label><br>
+                    <input type="radio" name="question78" value="A"> A) By promoting deforestation to expand agricultural land<br>
+                    <input type="radio" name="question78" value="B"> B) By eliminating the role of forests in carbon storage<br>
+                    <input type="radio" name="question78" value="C"> C) By limiting forest management to only commercial purposes<br>
+                    <input type="radio" name="question78" value="D"> D) By enhancing carbon sequestration and improving ecosystem services<br>
+                </div>
+
+                <div class="question">
+                    <label>79. The Brundtland Commission (1987) defined sustainable development as:</label><br>
+                    <input type="radio" name="question79" value="A"> A) Development that focuses solely on economic growth without environmental concern<br>
+                    <input type="radio" name="question79" value="B"> B) Development that meets the needs of the present without compromising the ability of future generations to meet their own needs<br>
+                    <input type="radio" name="question79" value="C"> C) Development that ensures the exploitation of natural resources for future generations<br>
+                    <input type="radio" name="question79" value="D"> D) Development that disregards the social aspects of growth and focuses purely on environmental concerns<br>
+                </div>
+
+                <div class="question">
+                    <label>80. The social dimension of sustainable development focuses on:</label><br>
+                    <input type="radio" name="question80" value="A"> A) Ensuring environmental sustainability through the conservation of resources<br>
+                    <input type="radio" name="question80" value="B"> B) Achieving fairness in distribution and opportunity, including access to health, education, and gender equity<br>
+                    <input type="radio" name="question80" value="C"> C) Maintaining economic growth while minimizing environmental damage<br>
+                    <input type="radio" name="question80" value="D"> D) Maximizing industrial output and consumption for economic growth<br>
+                </div>
+
+                <div class="question">
+                    <label>81. What is the primary driver of resource conflict related to the unequal distribution of benefits?</label><br>
+                    <input type="radio" name="question81" value="A"> A) Resource scarcity<br>
+                    <input type="radio" name="question81" value="B"> B) Transboundary pressures<br>
+                    <input type="radio" name="question81" value="C"> C) Poor governance<br>
+                    <input type="radio" name="question81" value="D"> D) Unequal distribution of development benefits<br>
+                </div>
+
+                <div class="question">
+                    <label>82. Which of the following is NOT a characteristic of natural resource conflicts?</label><br>
+                    <input type="radio" name="question82" value="A"> A) Fair distribution of benefits and burdens<br>
+                    <input type="radio" name="question82" value="B"> B) Involvement of multiple stakeholders<br>
+                    <input type="radio" name="question82" value="C"> C) Power imbalances between parties<br>
+                    <input type="radio" name="question82" value="D"> D) Uneven geographic patterns of resource distribution<br>
+                </div>
+
+                <div class="question">
+                    <label>83. A region faces severe water scarcity, but the local government is unable to address it due to weak governance. What would be an innovative approach to resolve the issue effectively?</label><br>
+                    <input type="radio" name="question83" value="A"> A) Strengthen community participation and integrate local knowledge in resource management<br>
+                    <input type="radio" name="question83" value="B"> B) Allow private companies to control all water resources<br>
+                    <input type="radio" name="question83" value="C"> C) Restrict access to water based on income levels<br>
+                    <input type="radio" name="question83" value="D"> D) Focus exclusively on improving industrial infrastructure<br>
+                </div>
+
+                <div class="question">
+                    <label>84. What principle does the UN Declaration on the Rights of Indigenous Peoples (UNDRIP) advocate for regarding indigenous peoples and their land?</label><br>
+                    <input type="radio" name="question84" value="A"> A) Forcible relocation without consent for development projects<br>
+                    <input type="radio" name="question84" value="B"> B) Right to be removed from lands without compensation<br>
+                    <input type="radio" name="question84" value="C"> C) Free, prior, and informed consent before relocation, coupled with fair compensation<br>
+                    <input type="radio" name="question84" value="D"> D) Limited involvement in resource management decisions<br>
+                </div>
+
+                <div class="question">
+                    <label>85. A country is facing land-use conflicts due to the over-exploitation of its natural resources. Which intervention would help improve its natural resource governance and reduce conflicts?</label><br>
+                    <input type="radio" name="question85" value="A"> A) Ignoring the rights of marginalized communities in decision-making<br>
+                    <input type="radio" name="question85" value="B"> B) Legal and institutional reforms to clarify resource rights and responsibilities<br>
+                    <input type="radio" name="question85" value="C"> C) Promoting exclusive resource rights for powerful corporations<br>
+                    <input type="radio" name="question85" value="D"> D) Limiting public participation in decision-making processes<br>
+                </div>
+
+                <div class="question">
+                    <label>86. A country is planning a large infrastructure project that will impact local natural resources. Which action, according to the principles of good natural resource governance, would be most beneficial?</label><br>
+                    <input type="radio" name="question86" value="A"> A) Proceed without conducting any impact assessment<br>
+                    <input type="radio" name="question86" value="B"> B) Keep the project information confidential to avoid public opposition<br>
+                    <input type="radio" name="question86" value="C"> C) Conduct an environmental and social impact assessment and make it publicly available<br>
+                    <input type="radio" name="question86" value="D"> D) Limit the consultation process to government officials only<br>
+                </div>
+
+                <div class="question">
+                    <label>87. What is one of the main roles of elders in indigenous conflict resolution systems in Ethiopia?</label><br>
+                    <input type="radio" name="question87" value="A"> A) They enforce national laws<br>
+                    <input type="radio" name="question87" value="B"> B) They act as mediators to settle disputes<br>
+                    <input type="radio" name="question87" value="C"> C) They provide formal legal education<br>
+                    <input type="radio" name="question87" value="D"> D) They conduct criminal investigations<br>
+                </div>
+
+                <div class="question">
+                    <label>88. Why is indigenous conflict resolution mechanisms often preferred in rural communities, especially in Ethiopia?</label><br>
+                    <input type="radio" name="question88" value="A"> A) They are quicker and less expensive than formal court systems<br>
+                    <input type="radio" name="question88" value="B"> B) They use formal written laws for consistency<br>
+                    <input type="radio" name="question88" value="C"> C) They focus on punishing offenders rather than reconciliation<br>
+                    <input type="radio" name="question88" value="D"> D) They involve external parties to resolve conflict<br>
+                    </div>
+                    <div class="question">
+                        <label>91. Which of the following is an example of a pro-natalist policy?</label><br>
+                        <input type="radio" name="question91" value="A"> A) The provision of free contraceptives<br>
+                        <input type="radio" name="question91" value="B"> B) Strict laws limiting family sizes<br>
+                        <input type="radio" name="question91" value="C"> C) Family planning education<br>
+                        <input type="radio" name="question91" value="D"> D) Financial incentives for families with more children<br>
+                    </div>
+                    
+                    <div class="question">
+                        <label>92. Which of the following policies would best be classified as an anti-natalist measure?</label><br>
+                        <input type="radio" name="question92" value="A"> A) Providing maternity leave and child benefits to encourage family growth<br>
+                        <input type="radio" name="question92" value="B"> B) Introducing family planning programs and promoting smaller families<br>
+                        <input type="radio" name="question92" value="C"> C) Offering housing subsidies for families with three or more children<br>
+                        <input type="radio" name="question92" value="D"> D) Tax reductions for large families<br>
+                    </div>
+                    
+                    <div class="question">
+                        <label>93. Why is family planning considered an effective method of controlling population growth?</label><br>
+                        <input type="radio" name="question93" value="A"> A) It encourages larger families<br>
+                        <input type="radio" name="question93" value="B"> B) It directly increases the birth rate<br>
+                        <input type="radio" name="question93" value="C"> C) It promotes migration to other countries<br>
+                        <input type="radio" name="question93" value="D"> D) It empowers women and helps reduce fertility rates<br>
+                    </div>
+                    
+                    <div class="question">
+                        <label>94. Based on the high fertility rates in Africa, what could be a significant factor hindering population control efforts in the region?</label><br>
+                        <input type="radio" name="question94" value="A"> A) Lack of awareness and access to family planning methods<br>
+                        <input type="radio" name="question94" value="B"> B) High levels of immigration<br>
+                        <input type="radio" name="question94" value="C"> C) Strict government regulations on fertility<br>
+                        <input type="radio" name="question94" value="D"> D) A low demand for food and resources<br>
+                    </div>
+                    
+                    <div class="question">
+                        <label>95. What does "economic development" primarily focus on?</label><br>
+                        <input type="radio" name="question95" value="A"> A) Increasing national defense<br>
+                        <input type="radio" name="question95" value="B"> B) Decreasing population growth<br>
+                        <input type="radio" name="question95" value="C"> C) Increasing access to basic goods and services<br>
+                        <input type="radio" name="question95" value="D"> D) Limiting immigration<br>
+                    </div>
+
+                    <div class="question">
+                        <label>96. According to the definition of environmental health, which of the following does it NOT include?</label><br>
+                        <input type="radio" name="question96" value="A"> A) The direct effects of chemical agents<br>
+                        <input type="radio" name="question96" value="B"> B) Effects of physical, biological, and social factors<br>
+                        <input type="radio" name="question96" value="C"> C) The effects of personal lifestyle choices on health<br>
+                        <input type="radio" name="question96" value="D"> D) Control of disease-causing agents in the environment<br>
+                    </div>
+
+                    <div class="question">
+                        <label>97. Considering the evidence of poor air quality contributing to millions of deaths each year, which of the following policies would most likely help improve environmental health globally?</label><br>
+                        <input type="radio" name="question97" value="A"> A) Reducing restrictions on industrial emissions to increase economic growth<br>
+                        <input type="radio" name="question97" value="B"> B) Encouraging the use of clean energy sources and improving air quality standards<br>
+                        <input type="radio" name="question97" value="C"> C) Focusing only on improving healthcare services without addressing environmental factors<br>
+                        <input type="radio" name="question97" value="D"> D) Building more urban centers without considering their environmental impact<br>
+                    </div>
+
+                    <div class="question">
+                        <label>98. If a geographer is examining the interaction between human activity and natural environments, which field are they likely working in?</label><br>
+                        <input type="radio" name="question98" value="A"> A) Biogeography<br>
+                        <input type="radio" name="question98" value="B"> B) Political geography<br>
+                        <input type="radio" name="question98" value="C"> C) Physical geography<br>
+                        <input type="radio" name="question98" value="D"> D) Human geography<br>
+                    </div>
+
+                    <div class="question">
+                        <label>99. What causes folding in the Earth's crust?</label><br>
+                        <input type="radio" name="question99" value="A"> A) Wind erosion<br>
+                        <input type="radio" name="question99" value="B"> B) Tensional forces<br>
+                        <input type="radio" name="question99" value="C"> C) Gravitational forces<br>
+                        <input type="radio" name="question99" value="D"> D) Compressional forces<br>
+                    </div>
+
+                    <div class="question">
+                        <label>100. Which of the following is NOT a primary agent of physical weathering?</label><br>
+                        <input type="radio" name="question100" value="A"> A) Temperature changes<br>
+                        <input type="radio" name="question100" value="B"> B) Rainwater<br>
+                        <input type="radio" name="question100" value="C"> C) Frost action<br>
+                        <input type="radio" name="question100" value="D"> D) Plant and animal activity<br>
+                    </div>
+
+                    <div class="question">
+                        <label>101. If you measure the distance between two cities on a map as 5 cm and the actual distance is 50 km, what is the map's scale?</label><br>
+                        <input type="radio" name="question101" value="A"> A) 1 cm to 5 km<br>
+                        <input type="radio" name="question101" value="B"> B) 1 cm to 10 km<br>
+                        <input type="radio" name="question101" value="C"> C) 1 cm to 50 km<br>
+                        <input type="radio" name="question101" value="D"> D) 1 cm to 100 km<br>
+                    </div>
+
+                    <div class="question">
+                        <label>102. What is the area of a circle with a radius of 3 cm, given that π = 3.14 and the scale is 1 cm to 2 km?</label><br>
+                        <input type="radio" name="question102" value="A"> A) 28.26 km²<br>
+                        <input type="radio" name="question102" value="B"> B) 56.52 km²<br>
+                        <input type="radio" name="question102" value="C"> C) 15.24 km²<br>
+                        <input type="radio" name="question102" value="D"> D) 9.42 km²<br>
+                    </div>
+
+                    <div class="question">
+                        <label>103. If a map scale is 1 cm to 5 km, how much area does 4 cm² on the map represent?</label><br>
+                        <input type="radio" name="question103" value="A"> A) 20 km²<br>
+                        <input type="radio" name="question103" value="B"> B) 40 km²<br>
+                        <input type="radio" name="question103" value="C"> C) 80 km²<br>
+                        <input type="radio" name="question103" value="D"> D) 100 km²<br>
+                    </div>
+
+                    <div class="question">
+                        <label>104. If two maps are of the same region, but one uses a scale of 1 cm to 10 km and the other uses 1 cm to 50 km, which map would be more detailed?</label><br>
+                        <input type="radio" name="question104" value="A"> A) The map with a scale of 1 cm to 50 km<br>
+                        <input type="radio" name="question104" value="B"> B) Both maps would have the same detail<br>
+                        <input type="radio" name="question104" value="C"> C) It depends on the projection used<br>
+                        <input type="radio" name="question104" value="D"> D) The map with a scale of 1 cm to 10 km<br>
+                    </div>
+
+                    <div class="question">
+                        <label>105. The base and height of a right-angled triangle are 3 cm and 6 cm, respectively, on a map. If the scale is 1 cm = 2 km, what is the ground area of the triangle?</label><br>
+                        <input type="radio" name="question105" value="A"> A) 12 km²<br>
+                        <input type="radio" name="question105" value="B"> B) 18 km²<br>
+                        <input type="radio" name="question105" value="C"> C) 36 km²<br>
+                        <input type="radio" name="question105" value="D"> D) 72 km²<br>
+                    </div>
+                    Base Your Answers For Questions 106 - 108 On Demographic Data Given Below Demographic variable Number attempted only by visual students<>br
+                        -Mid-year total population 35 million<br>
+                        -Total live births 850,000<br>
+                        -Total death 520,000<br>
+                        -Net migration rate +1/1000<br>
+                    <img src="geo-img-uno.png">
+                    <div class="question">
+                        <label>106. What is crude death rate (CDR) of the population?</label><br>
+                        <input type="radio" name="question106" value="A"> A) 24.28/1000<br>
+                        <input type="radio" name="question106" value="B"> B) 14.85/100<br>
+                        <input type="radio" name="question106" value="C"> C) 10.25/1000<br>
+                    </div>
+
+                    <div class="question">
+                        <label>107. What is the age dependency ratio (ADR) of country "B"?</label><br>
+                        <input type="radio" name="question107" value="A"> A) 75.5%<br>
+                        <input type="radio" name="question107" value="B"> B) 65<br>
+                        <input type="radio" name="question107" value="C"> C) 90.5<br>
+                        <input type="radio" name="question107" value="D"> D) 59<br>
+                    </div>
+
+                    <div class="question">
+                        <label>108. Which country has better standard of living?</label><br>
+                        <input type="radio" name="question108" value="A"> A) B<br>
+                        <input type="radio" name="question108" value="B"> B) A<br>
+                        <input type="radio" name="question108" value="C"> C) C<br>
+                        <input type="radio" name="question108" value="D"> D) D<br>
+                    </div>
+                    Base Your Answers For Questions 109 & 110 On Climatic Data Of Hypothetical 
+                    Region Given In The Table Below attempted only by visual students
+                    <img src="geo-img.png">
+
+                    <div class="question">
+                        <label>109. What is the annual range of temperature station "B"?</label><br>
+                        <input type="radio" name="question109" value="A"> A) 11<br>
+                        <input type="radio" name="question109" value="B"> B) 13<br>
+                        <input type="radio" name="question109" value="C"> C) 12<br>
+                        <input type="radio" name="question109" value="D"> D) 10<br>
+                    </div>
+
+                    <div class="question">
+                        <label>110. Based on the temperature distribution, in which global pressure belt is station "A"?</label><br>
+                        <input type="radio" name="question110" value="A"> A) Equatorial low<br>
+                        <input type="radio" name="question110" value="B"> B) Polar heights<br>
+                        <input type="radio" name="question110" value="C"> C) Horse latitude<br>
+                        <input type="radio" name="question110" value="D"> D) Sub-tropical low<br>
+                    </div>
+                    
+                </div>
+
+                <button class="submit-btn" onclick="submitExam()">Submit Answer</button>
+                <div class="answer" id="answer">
+                    <strong>Correct Answers:</strong><br>
+                    1. C) Eratosthenes<br>
+                    2. B) It studies the relationship between humans and the natural environment<br>
+                    3. C) Population geography<br>
+                    4. C) Astral sphere<br>
+                    5. C) Maps are three-dimensional representations<br>
+                    6. C) Latitude<br>
+                    7. C) Specific-purpose map<br>
+                    8. B) For showing country-specific reference points<br>
+                    9. B) Boundaries of countries, states, or regions<br>
+                    10. B) Normal fault<br>
+                    11. C) Strike-slip fault<br>
+                    12. B) Volcanism, because it creates fertile soil after eruptions<br>
+                    13. C) Convection, because it transfers heat by the movement of air masses<br>
+                    14. A) Water freezes in cracks, causing rocks to expand and break<br>
+                    15. B) Physical weathering by freeze-thaw action<br>
+                    16. D) Glaciers transport large boulders, while wind transports only fine sand<br>
+                    17. B) Energy flows from producers to primary consumers, then to secondary consumers, and finally to decomposers<br>
+                    18. B) Perishable goods can reach consumers without spoiling<br>
+                    19. B) Distance-time decay<br>
+                    20. B) Dead organisms would not be broken down, leading to a buildup of waste and a decrease in nutrient cycling<br>
+                    21. B) Because of the effects of altitude on temperature<br>
+                    22. D) Continental drift<br>
+                    23. D) The mass extinction of amphibians<br>
+                    24. B) The continents assumed their present positions<br>
+                    25. D) To explain the sequence of Earth's geological events and life forms<br>
+                    26. C) Older rock layers are found at the bottom of the sequence, while younger layers are found at the top<br>
+                    27. B) Oceans in the Southern Hemisphere release large amounts of heat energy<br>
+                    28. A) The distribution of oceans, ice caps, groundwater, and water vapor<br>
+                    29. A) It would likely misclassify the climate, as cloud cover has a significant impact on temperature<br>
+                    30. B) All months have an average temperature above 18°C<br>
+                    31.D) Dry Climate characteristics<br>
+                    32. A) Humid Continental climate<br>
+                    33. C) Mid-latitude Wet precipitation source<br>
+                    34. B) Polar Tundra characteristics<br>
+                    35. D) Day length variation cause<br>
+                    36. B) Atmospheric circulation impact<br>
+                    37. A) Ocean current redirection impact<br>
+                    38. B) Ethiopia's Woina-Dega crops<br>
+                    39. B) Land as natural resource<br>
+                    40. D)Renewable resources definition<br>
+                    41. C) Non-renewable resource example<br>
+                    42. B) Deforestation and climate change<br>
+                    43. C) Deforestation consequence<br>
+                    44. D) Sustainable land management<br>
+                    45. D) Transboundary rivers feature<br>
+                    46. A) Poor river management result<br>
+                    47. C) Nile Basin Initiative<br>
+                    48. A) Nile River conflict prevention<br>
+                    49. B) 20th century population growth<br>
+                    50. C) 2050 population projection<br>
+                    51. D) A youthful population with a large proportion of children<br>
+                    52. D) It causes a decline in birth rates, slowing population growth<br>
+                    53. B) Improved healthcare and disease management<br>
+                    54. B) A reduced labor force and higher dependency ratios<br>
+                    55. D) It may result in a more diverse workforce but could lead to job competition for low-skilled natives<br>
+                    56. D) Immigration diversifies the workforce, but may also lead to social tensions and competition for jobs<br>
+                    57. C) Promoting population redistribution to smaller urban or rural areas<br>
+                    58. A) Similar fossils found on different continents<br>
+                    59. C) The continents were once part of a single landmass<br>
+                    60. A) Lithosphere and Asthenosphere<br>
+                    61. A) The asthenosphere's plastic-like behavior<br>
+                    62. D) It unified various geological processes under one framework<br>
+                    63. C) Divergent Boundary<br>
+                    64. B) Rising heat and material push plates apart, while sinking material pulls plates together<br>
+                    65. C) Magma chamber drainage and cone collapse<br>
+                    66. D) By evenly eroding the topsoil in a wide flow<br>
+                    67. C) Due to human activities such as deforestation and emissions<br>
+                    68. B) Deforestation decreases the amount of carbon stored in trees, releasing more GHGs<br>
+                    69. C) Carbon Dioxide (CO2)<br>
+                    70. A) By reducing the amount of CO2 absorbed through photosynthesis<br>
+                    71. C) Urban areas experience warmer nights due to heat retention by buildings and roads<br>
+                    72. D) High-latitude regions in the Northern Hemisphere<br>
+                    73. D) By contaminating coastal groundwater supplies with saltwater<br>
+                    74. C) To reduce greenhouse gas emissions by at least 5% below 1990 levels in developed countries between 2008-2012<br>
+                    75. A) To focus on global adaptation strategies and response measures<br>
+                    76. B) Soil-based emission reduction initiatives<br>
+                    77. D) Develop an electric rail network powered by renewable energy<br>
+                    78. D) By enhancing carbon sequestration and improving ecosystem services<br>
+                    79. B) Development that meets the needs of the present without compromising the ability of future generations to meet their own needs<br>
+                    80. B) Achieving fairness in distribution and opportunity, including access to health, education, and gender equity<br>
+                    81. D) Unequal distribution of development benefits<br>
+                    82. A) Fair distribution of benefits and burdens<br>
+                    83. A) Strengthen community participation and integrate local knowledge in resource management<br>
+                    84. C) Free, prior, and informed consent before relocation, coupled with fair compensation<br>
+                    85. B) Legal and institutional reforms to clarify resource rights and responsibilities<br>
+                    86. C) Conduct an environmental and social impact assessment and make it publicly available<br>
+                    87. B) They act as mediators to settle disputes<br>
+                    88. A) They are quicker and less expensive than formal court systems<br>
+                    89. B) Population growth exceeding the rate of food production<br>
+                    90. B) It assumes that technological innovation will always keep pace with population growth<br>
+                    75. A) To focus on global adaptation strategies and response measures<br>
+                    76. B) Soil-based emission reduction initiatives<br>
+                    77. D) Develop an electric rail network powered by renewable energy<br>
+                    78. D) By enhancing carbon sequestration and improving ecosystem services<br>
+                    79. B) Development that meets the needs of the present without compromising the ability of future generations to meet their own needs<br>
+                    80. B) Achieving fairness in distribution and opportunity, including access to health, education, and gender equity<br>
+                    81. D) Unequal distribution of development benefits<br>
+                    82. A) Fair distribution of benefits and burdens<br>
+                    83. A) Strengthen community participation and integrate local knowledge in resource management<br>
+                    84. C) Free, prior, and informed consent before relocation, coupled with fair compensation<br>
+                    85. B) Legal and institutional reforms to clarify resource rights and responsibilities<br>
+                    86. C) Conduct an environmental and social impact assessment and make it publicly available<br>
+                    87. B) They act as mediators to settle disputes<br>
+                    88. A) They are quicker and less expensive than formal court systems<br>
+                    89. B) Population growth exceeding the rate of food production<br>
+                    90. B) It assumes that technological innovation will always keep pace with population growth<br>
+                    91. D) Financial incentives for families with more children<br>
+                    92. B) Introducing family planning programs and promoting smaller families<br>
+                    93. D) It empowers women and helps reduce fertility rates<br>
+                    94. A) Lack of awareness and access to family planning methods<br>
+                    95. C) Increasing access to basic goods and services<br>
+                    96. C) The effects of personal lifestyle choices on health<br>
+                    97. B) Encouraging the use of clean energy sources and improving air quality standards<br>
+                    98. D) Human geography<br>
+                    99. D) Compressional forces<br>
+                    100. B) Rainwater<br>
+                    101. B) 1 cm to 10 km<br>
+                    102. B) 56.52 km²<br>
+                    103. C) 80 km²<br>
+                    104. D) The map with a scale of 1 cm to 10 km<br>
+                    105. A) 12 km²<br>
+                    106. C) 10.25/1000<br>
+                    107. A) 75.5%<br>
+                    108. A) B<br>
+                    109. D) 10<br>
+                    110. A) Equatorial low<br>
+                                </div>
+                <div class="score" id="score"></div>
+            </article>
+        </section>
+    </main>
+
+    <script>
+       // Timer functionality
+let timerInterval;
+let timeLeft = 110 * 60; // 110 minutes in seconds
+const totalTime = timeLeft;
+
+document.addEventListener('DOMContentLoaded', function() {
+    const timerDisplay = document.getElementById('timerDisplay');
+    const timerProgress = document.getElementById('timerProgress');
+    const timerContainer = document.getElementById('timerContainer');
+    
+    function formatTime(seconds) {
+        const mins = Math.floor(seconds / 60);
+        const secs = seconds % 60;
+        return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    }
+    
+    function updateTimer() {
+        timerDisplay.textContent = formatTime(timeLeft);
+        const progressPercent = (timeLeft / totalTime) * 100;
+        timerProgress.style.width = `${progressPercent}%`;
+        
+        // Visual warnings
+        if (timeLeft <= 10 * 60) {
+            timerContainer.style.background = 'linear-gradient(135deg, #ff9966, #ff5e62)';
+            if (timeLeft <= 5 * 60) {
+                timerContainer.classList.add('timer-warning');
+            }
+        }
+        
+        if (timeLeft <= 0) {
+            timerDisplay.textContent = "TIME'S UP!";
+            timerProgress.style.width = '0%';
+            // NOTE: Removed auto-submit here
+        } else {
+            timeLeft--;
+        }
+    }
+    
+    // Start timer
+    timerInterval = setInterval(updateTimer, 1000);
+    updateTimer();
+});
+
+// Modified submit function
+function submitExam() {
+    // Stop the timer when submitting
+    clearInterval(timerInterval);
+    
+    // Rest of your scoring logic
+    let score = 0;
+    const totalQuestions = 110;
+    const correctAnswers = {
+        1: "C", 2: "B", 3: "C", 4: "C", 5: "C",
+        6: "C", 7: "C", 8: "B", 9: "B", 10: "B",
+        11: "C", 12: "B", 13: "C", 14: "A", 15: "B",
+        16: "D", 17: "B", 18: "B", 19: "B", 20: "B",
+        21: "B", 22: "D", 23: "D", 24: "B", 25: "D",
+        26: "C", 27: "B", 28: "A", 29: "A", 30: "B",
+        31: "D", 32: "A", 33: "C", 34: "B", 35: "D",
+        36: "B", 37: "A", 38: "B", 39: "B", 40: "D",
+        41: "C", 42: "B", 43: "C", 44: "D", 45: "D",
+        46: "A", 47: "C", 48: "A", 49: "B", 50: "C",
+        51: "D", 52: "D", 53: "B", 54: "B", 55: "D",
+        56: "D", 57: "C", 58: "A", 59: "C", 60: "A",
+        61: "A", 62: "D", 63: "C", 64: "B", 65: "C",
+        66: "D", 67: "C", 68: "B", 69: "C", 70: "A",
+        71: "C", 72: "D", 73: "D", 74: "C", 75: "A",
+        76: "B", 77: "D", 78: "D", 79: "B", 80: "B",
+        81: "D", 82: "A", 83: "A", 84: "C", 85: "B",
+        86: "C", 87: "B", 88: "A", 89: "B", 90: "B",
+        75: "A", 76: "B", 77: "D", 78: "D", 79: "B",
+        80: "B", 81: "D", 82: "A", 83: "A", 84: "C",
+        85: "B", 86: "C", 87: "B", 88: "A", 89: "B",
+        90:"B",91: "D", 92: "B", 93: "D", 94: "A",
+        95: "C",96: "C", 97: "B", 98: "D", 99: "D", 100: "B",
+        101: "B", 102: "B", 103: "C", 104: "D", 105: "A",
+        106: "C", 107: "A", 108: "A", 109: "D", 110: "A"
+    };
+    
+    for (let i = 1; i <= totalQuestions; i++) {
+        const selectedOption = document.querySelector(`input[name="question${i}"]:checked`);
+        if (selectedOption && selectedOption.value === correctAnswers[i]) {
+            score++;
+        }
+    }
+    
+    document.getElementById('answer').style.display = 'block';
+    document.getElementById('score').textContent = `Your score: ${score}/${totalQuestions} (${Math.round((score/totalQuestions)*100)}%)`;
+    document.getElementById('score').scrollIntoView({ behavior: 'smooth' });
+}
+    </script>
+</body>
+</html>

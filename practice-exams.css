@@ -1,0 +1,90 @@
+/* Background and General Styling */
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to right, #faf3e0, #f4e0d9); /* Warm gradient */
+    color: #333;
+}
+
+/* Header Styling */
+header h1 {
+    text-align: center;
+    font-weight: bold;
+    font-size: 3em;
+    color: #2200e6; /* Dark red for practice exams */
+    margin-top: 20px;
+    text-shadow: 3px 3px 6px  rgb(104, 103, 103); /* Subtle shadow */
+}
+
+/* Cards Styling */
+.resources {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    margin: 40px auto;
+    max-width: 1200px;
+}
+
+.card {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 8px 15px rgba(125, 65, 180, 0.2); /* Depth effect */
+    text-align: center;
+    width: 300px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-10px); /* Lift on hover */
+    box-shadow: 0 12px 20px rgba(147, 203, 230, 0.4); /* Enhanced shadow */
+}
+
+.card h2 {
+    font-size: 1.5em;
+    color: #0c0123; /* Dark red for headings */
+}
+
+.card p {
+    font-size: 1em;
+    margin: 15px 0;
+    color: #555; /* Softer text */
+}
+
+.card button {
+    margin-top: 10px;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 25px;
+    background-color: #0842ff; /* Orange button */
+    color: white;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.card button:hover {
+    background-color: #000000; /* Dark orange on hover */
+    transform: scale(1.1); /* Slight zoom */
+}
+.back1 {
+    margin: 50px;
+    width: 100px;
+    height: 50px;
+    border-radius: 6px;
+    background: linear-gradient(480deg, purple, black);
+    color: white;
+    border: none;
+    font-size: 1.5em;
+    background-color: #6a5acd;
+
+}
+.back1:hover {
+    border-radius: 4px;
+    background: linear-gradient(480deg, rgb(49, 124, 223),rgb(97, 13, 175));
+    color: white;
+    width: 100px;
+    height: 50px;
+}
